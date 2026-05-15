@@ -108,15 +108,6 @@ body > * {
   color: var(--muted);
 }
 
-.section-meta::before {
-  content: "";
-  display: inline-block;
-  width: 28px;
-  height: 1px;
-  background: var(--ink);
-  opacity: 0.5;
-}
-
 .section-meta .meta-label {
   color: var(--ink);
 }
@@ -255,20 +246,39 @@ body > * {
    MANIFESTO
    ============================================ */
 .manifesto {
+  position: relative;
   padding: var(--space-xxl) var(--space-md);
   max-width: var(--max-wide);
   margin: 0 auto;
+  overflow: hidden;
 }
 
-.manifesto-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: var(--space-xl);
-  align-items: start;
+/* Gravura de Vesalius — watermark à direita, enquadrada na área de conteúdo */
+.manifesto::before {
+  content: "";
+  position: absolute;
+  top: var(--space-xxl);
+  bottom: var(--space-xxl);
+  right: var(--space-md);
+  width: 42%;
+  max-width: 420px;
+  background-image: url("/assets/vesalius-fabrica.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center right;
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.manifesto > * {
+  position: relative;
+  z-index: 1;
 }
 
 .prose {
-  max-width: var(--max-content);
+  max-width: 640px;
 }
 
 .prose p {
@@ -285,45 +295,15 @@ body > * {
   margin-bottom: 0;
 }
 
-/* Prancha anatômica — SVG inline */
-.vesalius-figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  justify-self: end;
-  width: 100%;
-  max-width: 380px;
-}
-
-.vesalius-plate {
-  width: 100%;
-  height: auto;
-  color: var(--ink);
-  display: block;
-}
-
-.vesalius-caption {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
-  max-width: 32ch;
-  line-height: 1.5;
-}
-
-@media (max-width: 900px) {
-  .manifesto-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
+@media (max-width: 768px) {
+  .manifesto::before {
+    width: 65%;
+    right: 0;
+    opacity: 0.14;
   }
 
-  .vesalius-figure {
-    justify-self: center;
-    max-width: 320px;
+  .prose {
+    max-width: 100%;
   }
 }
 
@@ -648,6 +628,32 @@ body > * {
   letter-spacing: 0.05em;
   color: var(--muted);
   margin-top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-attribution {
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  opacity: 0.75;
+}
+
+.footer-attribution a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  transition: border-color 0.3s ease;
+}
+
+.footer-attribution a:hover {
+  border-bottom-color: var(--muted);
+}
+
+.footer-attribution em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
 }
 
 /* ============================================

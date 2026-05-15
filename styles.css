@@ -1,0 +1,615 @@
+/* ============================================
+   VESALIA — Landing Page
+   Clinical Operations
+   ============================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Cores */
+  --ink:        #0A0A0A;
+  --paper:      #FAFAF7;
+  --gold:       #A8884A;
+  --burgundy:   #5C1F26;
+  --muted:      #6B6B6B;
+  --hairline:   rgba(10, 10, 10, 0.12);
+
+  /* Tipografia */
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans:  "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+
+  /* Escala */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   32px;
+  --space-lg:   64px;
+  --space-xl:   128px;
+  --space-xxl:  192px;
+
+  /* Larguras */
+  --max-content: 720px;
+  --max-wide:    1200px;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- Section meta (numeração editorial) ---------- */
+.section-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.section-meta .meta-label {
+  color: var(--ink);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+/* Logo / wordmark composto */
+.hero-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: 0.18em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.descriptor {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Régua técnica (tributo Vesalius) */
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 240px;
+  height: 14px;
+  position: relative;
+}
+
+.rule-line {
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: var(--ink);
+}
+
+.rule-tick {
+  flex: 1;
+  height: 6px;
+  border-left: 1px solid var(--ink);
+  position: relative;
+  z-index: 1;
+}
+
+.rule-tick:last-child {
+  border-right: 1px solid var(--ink);
+}
+
+.rule-tick-major { height: 12px; }
+.rule-tick-medium { height: 9px; }
+
+/* Tagline central */
+.hero-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-xl) 0;
+  max-width: 920px;
+}
+
+.tagline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(48px, 9vw, 124px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+  font-variation-settings: "opsz" 144;
+}
+
+.lede {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(18px, 2vw, 22px);
+  letter-spacing: 0.01em;
+  color: var(--muted);
+}
+
+/* CTA Hero */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  width: fit-content;
+  transition: gap 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-cta:hover {
+  gap: 18px;
+}
+
+.hero-cta .arrow {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-cta:hover .arrow {
+  transform: translateY(3px);
+}
+
+/* ============================================
+   MANIFESTO
+   ============================================ */
+.manifesto {
+  padding: var(--space-xxl) var(--space-md);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.prose {
+  max-width: var(--max-content);
+}
+
+.prose p {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   PILARES
+   ============================================ */
+.pillars {
+  padding: var(--space-xxl) var(--space-md);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.pillar-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--ink);
+}
+
+.pillar-number {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.pillar-name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.pillar-text {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 32ch;
+}
+
+/* ============================================
+   LISTA DE ESPERA
+   ============================================ */
+.waitlist {
+  padding: var(--space-xxl) var(--space-md);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.waitlist-intro {
+  max-width: var(--max-content);
+  margin-bottom: var(--space-lg);
+}
+
+.waitlist-intro p {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+/* Form */
+.form {
+  max-width: var(--max-content);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.field label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--ink);
+  padding: 10px 0;
+  outline: none;
+  width: 100%;
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%230A0A0A' fill='none' stroke-width='1' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  padding-right: 24px;
+  cursor: pointer;
+}
+
+.field textarea {
+  resize: vertical;
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  border: 1px solid var(--hairline);
+  padding: 12px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--gold);
+}
+
+.field input:invalid:not(:placeholder-shown),
+.field select:invalid {
+  border-color: var(--ink);
+}
+
+/* Submit */
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  border: none;
+  padding: 22px 28px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: var(--space-sm);
+  transition: background 0.3s ease;
+  border-radius: 0;
+}
+
+.submit:hover {
+  background: var(--burgundy);
+}
+
+.submit .arrow {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.submit:hover .arrow {
+  transform: translateX(6px);
+}
+
+.form-note {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: var(--space-xs);
+  font-style: italic;
+}
+
+/* Loading state */
+.submit.is-loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.submit.is-loading .arrow {
+  display: none;
+}
+
+/* Success state */
+.form-success {
+  max-width: var(--max-content);
+  padding: var(--space-lg) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border-top: 1px solid var(--ink);
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.success-mark {
+  font-family: var(--font-sans);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.success-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.success-text {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 48ch;
+}
+
+/* Error state */
+.form-error {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--burgundy);
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--burgundy);
+  border-bottom: 1px solid var(--burgundy);
+  margin-bottom: var(--space-sm);
+}
+
+.form-error a {
+  color: var(--burgundy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.footer-mark {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-wordmark {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+
+.footer-descriptor {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.footer-meta a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.footer-meta a:hover {
+  border-bottom-color: var(--ink);
+}
+
+.footer-sep {
+  color: var(--hairline);
+}
+
+.footer-fineprint {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-top: var(--space-md);
+}
+
+/* ============================================
+   ANIMAÇÃO DE ENTRADA
+   ============================================ */
+.hero-mark,
+.hero-body,
+.hero-cta {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: rise 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.hero-mark { animation-delay: 0.1s; }
+.hero-body { animation-delay: 0.3s; }
+.hero-cta  { animation-delay: 0.6s; }
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+@media (max-width: 768px) {
+  :root {
+    --space-xl:  64px;
+    --space-xxl: 96px;
+  }
+
+  .hero {
+    padding: var(--space-md);
+  }
+
+  .pillar-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vesalia | Clinical Operations</title>
+  <meta name="description" content="Vesalia é a infraestrutura operacional das clínicas médicas premium. Infraestrutura, não software.">
+  <meta name="theme-color" content="#FAFAF7">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Vesalia | Clinical Operations">
+  <meta property="og:description" content="Infraestrutura, não software. Para clínicas médicas premium.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Favicon (placeholder — substitua pelo símbolo da marca) -->
+  <link rel="icon" type="image/svg+xml" href="/assets/vesalia-simbolo.svg">
+
+  <!-- Fontes (Fraunces serifa editorial + Manrope grotesque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- HERO -->
+  <!-- ============================================ -->
+  <section class="hero">
+    <header class="hero-header">
+      <div class="hero-mark">
+        <span class="wordmark">VESALIA</span>
+        <div class="rule">
+          <span class="rule-line"></span>
+          <span class="rule-tick rule-tick-major"></span>
+          <span class="rule-tick"></span>
+          <span class="rule-tick rule-tick-medium"></span>
+          <span class="rule-tick"></span>
+          <span class="rule-tick rule-tick-major"></span>
+        </div>
+        <span class="descriptor">CLINICAL OPERATIONS</span>
+      </div>
+    </header>
+
+    <div class="hero-body">
+      <h1 class="tagline">Infraestrutura,<br>não software.</h1>
+      <p class="lede">Para clínicas médicas premium.</p>
+    </div>
+
+    <a href="#lista" class="hero-cta">
+      <span>Entrar na lista de espera</span>
+      <span class="arrow">↓</span>
+    </a>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- MANIFESTO -->
+  <!-- ============================================ -->
+  <section class="manifesto">
+    <div class="section-meta">
+      <span class="meta-label">§ 01</span>
+      <span class="meta-title">Princípio</span>
+    </div>
+
+    <div class="prose">
+      <p>Em 1543, Andreas Vesalius refundou a anatomia moderna. Não com nova teoria — com nova observação. Dissecou, desenhou, conferiu, e corrigiu treze séculos de erro herdado de Galeno.</p>
+      <p>Vesalia aplica o mesmo rigor à operação das clínicas de medicina premium. Não somos mais um sistema. Somos a infraestrutura por trás das clínicas que definem o padrão.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- TRÊS PILARES -->
+  <!-- ============================================ -->
+  <section class="pillars">
+    <div class="section-meta">
+      <span class="meta-label">§ 02</span>
+      <span class="meta-title">Pilares</span>
+    </div>
+
+    <ol class="pillar-list">
+      <li class="pillar">
+        <span class="pillar-number">01</span>
+        <h3 class="pillar-name">Rigor</h3>
+        <p class="pillar-text">Operação fundada em observação real. Não em premissas genéricas de software médico.</p>
+      </li>
+      <li class="pillar">
+        <span class="pillar-number">02</span>
+        <h3 class="pillar-name">Refinamento</h3>
+        <p class="pillar-text">Cada detalhe da operação importa. Porque cada detalhe da clínica importa.</p>
+      </li>
+      <li class="pillar">
+        <span class="pillar-number">03</span>
+        <h3 class="pillar-name">Discrição</h3>
+        <p class="pillar-text">Premium silencioso. Sem promessa de transformação, sem marketing barulhento.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- LISTA DE ESPERA -->
+  <!-- ============================================ -->
+  <section class="waitlist" id="lista">
+    <div class="section-meta">
+      <span class="meta-label">§ 03</span>
+      <span class="meta-title">Lista de espera</span>
+    </div>
+
+    <div class="waitlist-intro">
+      <p>As primeiras parcerias começam por convite. Para receber acesso quando abrirmos, deixe seus dados abaixo.</p>
+    </div>
+
+    <form class="form" id="waitlist-form" novalidate>
+      <div class="field">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="especialidade">Especialidade</label>
+          <select id="especialidade" name="especialidade" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="Cirurgia Plástica">Cirurgia Plástica</option>
+            <option value="Dermatologia">Dermatologia</option>
+            <option value="Medicina Estética">Medicina Estética</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" name="cidade" required autocomplete="address-level2">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="mensagem">Mensagem (opcional)</label>
+        <textarea id="mensagem" name="mensagem" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="submit">
+        <span>Entrar na lista</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <p class="form-note">Seus dados ficam apenas conosco. Você recebe convite quando abrirmos as primeiras parcerias.</p>
+    </form>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="footer-mark">
+      <span class="footer-wordmark">VESALIA</span>
+      <span class="footer-descriptor">CLINICAL OPERATIONS</span>
+    </div>
+
+    <div class="footer-meta">
+      <a href="https://instagram.com/vesalia.co" target="_blank" rel="noopener">@vesalia.co</a>
+      <span class="footer-sep">·</span>
+      <span>vesalia.com.br</span>
+    </div>
+
+    <div class="footer-fineprint">
+      <span>© 2026 Vesalia. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

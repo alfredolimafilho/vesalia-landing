@@ -44,13 +44,47 @@ html {
 }
 
 body {
-  background: var(--paper);
+  background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Grão de papel sutil — sobreposto a todo o fundo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/assets/paper-grain.svg");
+  background-repeat: repeat;
+  background-size: 280px 280px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+
+/* Vignette levíssima nos cantos — sugere papel impresso */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center,
+      transparent 55%,
+      rgba(10, 10, 10, 0.035) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {
@@ -72,6 +106,15 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--muted);
+}
+
+.section-meta::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--ink);
+  opacity: 0.5;
 }
 
 .section-meta .meta-label {
@@ -217,6 +260,13 @@ body {
   margin: 0 auto;
 }
 
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
 .prose {
   max-width: var(--max-content);
 }
@@ -233,6 +283,48 @@ body {
 
 .prose p:last-child {
   margin-bottom: 0;
+}
+
+/* Prancha anatômica — SVG inline */
+.vesalius-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  justify-self: end;
+  width: 100%;
+  max-width: 380px;
+}
+
+.vesalius-plate {
+  width: 100%;
+  height: auto;
+  color: var(--ink);
+  display: block;
+}
+
+.vesalius-caption {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  max-width: 32ch;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .vesalius-figure {
+    justify-self: center;
+    max-width: 320px;
+  }
 }
 
 /* ============================================

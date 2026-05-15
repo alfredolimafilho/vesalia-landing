@@ -10,7 +10,7 @@
    3. Cole o endpoint na constante abaixo
    ============================================ */
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/SEU_ID_AQUI";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjglnkej";
 
 const form = document.getElementById("waitlist-form");
 const formContainer = form.parentElement;

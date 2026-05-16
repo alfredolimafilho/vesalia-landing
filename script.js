@@ -1,13 +1,66 @@
 /* ============================================
-   VESALIA — Captura de lista de espera
-   --------------------------------------------
-   Submete pro Formspree (https://formspree.io)
+   VESALIA — Microinterações + captura de lista
+   ============================================ */
 
-   ⚠️  CONFIGURAR ANTES DE PUBLICAR:
-   1. Crie conta gratuita em formspree.io
-   2. Crie um novo form (recebe endpoint tipo
-      https://formspree.io/f/xxxxxxxx)
-   3. Cole o endpoint na constante abaixo
+/* ---------- Scroll reveal (IntersectionObserver) ---------- */
+(() => {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    document.querySelectorAll(".reveal, .stagger-children").forEach((el) => {
+      el.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
+  document.querySelectorAll(".reveal, .stagger-children").forEach((el) => {
+    observer.observe(el);
+  });
+})();
+
+/* ---------- Sticky nav: aparece após scrollar 75% da viewport ---------- */
+(() => {
+  const nav = document.querySelector(".floating-nav");
+  if (!nav) return;
+
+  let ticking = false;
+  const threshold = () => window.innerHeight * 0.75;
+
+  const update = () => {
+    const shouldShow = window.scrollY > threshold();
+    nav.classList.toggle("is-visible", shouldShow);
+    ticking = false;
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+})();
+
+/* ============================================
+   Formspree — captura de lista de espera
    ============================================ */
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjglnkej";

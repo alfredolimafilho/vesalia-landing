@@ -26,6 +26,17 @@
 <body>
 
   <!-- ============================================ -->
+  <!-- STICKY NAV (aparece após scrollar o hero) -->
+  <!-- ============================================ -->
+  <nav class="floating-nav" aria-hidden="true">
+    <a href="#" class="floating-wordmark">VESALIA</a>
+    <a href="#lista" class="floating-cta">
+      <span>Lista de espera</span>
+      <span class="arrow">↓</span>
+    </a>
+  </nav>
+
+  <!-- ============================================ -->
   <!-- HERO -->
   <!-- ============================================ -->
   <section class="hero">
@@ -59,12 +70,12 @@
   <!-- MANIFESTO -->
   <!-- ============================================ -->
   <section class="manifesto">
-    <div class="section-meta">
+    <div class="section-meta reveal">
       <span class="meta-label">§ 01</span>
       <span class="meta-title">Princípio</span>
     </div>
 
-    <div class="prose">
+    <div class="prose reveal">
       <p>Em 1543, Andreas Vesalius refundou a anatomia moderna. Não com nova teoria — com nova observação. Dissecou, desenhou, conferiu, e corrigiu treze séculos de erro herdado de Galeno.</p>
       <p>Vesalia aplica o mesmo rigor à operação das clínicas de medicina premium. Não somos mais um sistema. Somos a infraestrutura por trás das clínicas que definem o padrão.</p>
     </div>
@@ -74,12 +85,12 @@
   <!-- TRÊS PILARES -->
   <!-- ============================================ -->
   <section class="pillars">
-    <div class="section-meta">
+    <div class="section-meta reveal">
       <span class="meta-label">§ 02</span>
       <span class="meta-title">Pilares</span>
     </div>
 
-    <ol class="pillar-list">
+    <ol class="pillar-list stagger-children">
       <li class="pillar">
         <span class="pillar-number">01</span>
         <h3 class="pillar-name">Continuidade</h3>
@@ -112,12 +123,12 @@
   <!-- COBERTURA — sumário de módulos -->
   <!-- ============================================ -->
   <section class="coverage">
-    <div class="section-meta">
+    <div class="section-meta reveal">
       <span class="meta-label">§ 03</span>
       <span class="meta-title">Cobertura</span>
     </div>
 
-    <div class="coverage-grid">
+    <div class="coverage-grid stagger-children">
       <div class="category">
         <h4 class="category-title">Operação</h4>
         <p class="category-modules">Agenda multi-profissional · Prontuário · Cirurgias · Checklists pré e pós-operatórios · Pós-op inteligente · Reativação de pacientes · Meu Dia · Ocupação de salas · Portal do Profissional · Confirmação digital de equipe</p>
@@ -154,12 +165,12 @@
   <!-- OBJEÇÕES / FAQ -->
   <!-- ============================================ -->
   <section class="faq">
-    <div class="section-meta">
+    <div class="section-meta reveal">
       <span class="meta-label">§ 04</span>
       <span class="meta-title">Objeções</span>
     </div>
 
-    <dl class="faq-list">
+    <dl class="faq-list stagger-children">
       <div class="faq-item">
         <dt class="faq-question">“E se eu quiser sair?”</dt>
         <dd class="faq-answer">Exporta tudo em ZIP — prontuário por profissional, com fotos pré e pós-op, contratos, receitas, exames e financeiro. Sem custo, qualquer dia. É o oposto de lock-in.</dd>
@@ -191,16 +202,16 @@
   <!-- LISTA DE ESPERA -->
   <!-- ============================================ -->
   <section class="waitlist" id="lista">
-    <div class="section-meta">
+    <div class="section-meta reveal">
       <span class="meta-label">§ 05</span>
       <span class="meta-title">Lista de espera</span>
     </div>
 
-    <div class="waitlist-intro">
+    <div class="waitlist-intro reveal">
       <p>As primeiras parcerias começam por convite. Para receber acesso quando abrirmos, deixe seus dados abaixo.</p>
     </div>
 
-    <form class="form" id="waitlist-form" novalidate>
+    <form class="form reveal" id="waitlist-form" novalidate>
       <div class="field">
         <label for="nome">Nome completo</label>
         <input type="text" id="nome" name="nome" required autocomplete="name">
@@ -259,7 +270,7 @@
   <!-- FOOTER -->
   <!-- ============================================ -->
   <footer class="footer">
-    <div class="footer-mark">
+    <div class="footer-mark reveal">
       <span class="footer-wordmark">VESALIA</span>
       <span class="footer-descriptor">CLINICAL OPERATIONS</span>
     </div>

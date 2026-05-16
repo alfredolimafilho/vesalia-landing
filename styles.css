@@ -838,9 +838,290 @@ body > * {
   }
 }
 
+/* ============================================
+   MOTION & MICROINTERAÇÕES
+   ============================================ */
+:root {
+  --ease-out-soft:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-fluid: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-fast:    0.35s;
+  --motion-base:    0.55s;
+  --motion-slow:    0.8s;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger pra containers de listas — cada filho entra 80ms depois do anterior */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+
+.stagger-children.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.is-visible > *:nth-child(1) { transition-delay: 0ms;   }
+.stagger-children.is-visible > *:nth-child(2) { transition-delay: 80ms;  }
+.stagger-children.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+.stagger-children.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+.stagger-children.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+.stagger-children.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+.stagger-children.is-visible > *:nth-child(7) { transition-delay: 480ms; }
+
+/* ---------- Sticky nav minimalista (aparece pós-hero) ---------- */
+.floating-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--space-md);
+  background: rgba(250, 250, 247, 0.78);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  border-bottom: 1px solid transparent;
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition:
+    opacity 0.5s var(--ease-out-soft),
+    transform 0.5s var(--ease-out-soft),
+    border-color 0.5s ease;
+}
+
+.floating-nav.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  border-bottom-color: var(--hairline);
+  pointer-events: auto;
+}
+
+.floating-wordmark {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 17px;
+  letter-spacing: 0.22em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.floating-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: gap 0.4s var(--ease-out-fluid);
+}
+
+.floating-cta .arrow {
+  transition: transform 0.4s var(--ease-out-fluid);
+}
+
+.floating-cta:hover {
+  gap: 16px;
+}
+
+.floating-cta:hover .arrow {
+  transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+  .floating-nav {
+    padding: 12px var(--space-md);
+  }
+  .floating-wordmark { font-size: 15px; }
+  .floating-cta { font-size: 10px; letter-spacing: 0.18em; }
+}
+
+/* ---------- Hover refinements ---------- */
+
+/* Pilares: linha animada da esquerda pra direita no topo, lift sutil */
+.pillar {
+  position: relative;
+  transition: transform var(--motion-base) var(--ease-out-soft);
+}
+
+.pillar::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--burgundy);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.7s var(--ease-out-soft);
+  pointer-events: none;
+}
+
+.pillar:hover {
+  transform: translateY(-3px);
+}
+
+.pillar:hover::before {
+  transform: scaleX(1);
+}
+
+.pillar-name {
+  transition: color 0.4s var(--ease-out-fluid);
+}
+
+.pillar:hover .pillar-name {
+  color: var(--burgundy);
+}
+
+/* Categorias de Cobertura: mesmo padrão, mais sutil */
+.category {
+  position: relative;
+  transition: transform var(--motion-base) var(--ease-out-soft);
+}
+
+.category::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--burgundy);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.7s var(--ease-out-soft);
+  pointer-events: none;
+}
+
+.category:hover {
+  transform: translateY(-2px);
+}
+
+.category:hover::before {
+  transform: scaleX(1);
+}
+
+.category-title {
+  transition: color 0.4s var(--ease-out-fluid);
+}
+
+.category:hover .category-title {
+  color: var(--burgundy);
+}
+
+/* FAQ: pergunta levanta sutil, resposta resolve de muted pra ink no hover */
+.faq-item {
+  transition: background 0.5s ease, padding 0.5s var(--ease-out-soft);
+}
+
+.faq-item:hover {
+  background: rgba(10, 10, 10, 0.018);
+}
+
+.faq-question {
+  transition: color 0.4s var(--ease-out-fluid);
+}
+
+.faq-item:hover .faq-question {
+  color: var(--burgundy);
+}
+
+.faq-answer {
+  transition: color 0.5s var(--ease-out-fluid);
+}
+
+.faq-item:hover .faq-answer {
+  color: var(--ink);
+}
+
+/* Form fields: label muda pra gold no focus, border-bottom mais smooth */
+.field label {
+  transition: color 0.35s var(--ease-out-fluid);
+}
+
+.field:focus-within label {
+  color: var(--gold);
+}
+
+.field input,
+.field select,
+.field textarea {
+  transition: border-color 0.4s var(--ease-out-fluid);
+}
+
+/* CTA hero e submit: micro press tátil no :active */
+.hero-cta {
+  transition:
+    gap 0.4s var(--ease-out-fluid),
+    transform 0.2s var(--ease-out-fluid);
+}
+
+.hero-cta:active {
+  transform: scale(0.985);
+}
+
+.submit {
+  transition:
+    background 0.4s var(--ease-out-fluid),
+    transform 0.2s var(--ease-out-fluid),
+    box-shadow 0.5s var(--ease-out-soft);
+}
+
+.submit:hover {
+  box-shadow: 0 12px 28px -16px rgba(10, 10, 10, 0.45);
+}
+
+.submit:active {
+  transform: translateY(1px) scale(0.998);
+  box-shadow: 0 6px 14px -12px rgba(10, 10, 10, 0.4);
+}
+
+/* Footer e instagram link — refinamento mínimo */
+.footer-meta a,
+.footer-attribution a {
+  transition: color 0.35s var(--ease-out-fluid), border-color 0.4s var(--ease-out-fluid);
+}
+
+/* ---------- Prefers-reduced-motion: anula tudo ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .reveal,
+  .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .floating-nav {
+    transition: none;
   }
 }

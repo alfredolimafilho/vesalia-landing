@@ -717,6 +717,29 @@ body > * {
   border-bottom-color: var(--ink);
 }
 
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.footer-legal a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
 .footer-sep {
   color: var(--hairline);
 }

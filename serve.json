@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/briefing/:token",
+      "destination": "https://app.vesalia.com.br/briefing/:token",
+      "type": 302
+    }
+  ]
+}

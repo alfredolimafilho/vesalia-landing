@@ -60,13 +60,16 @@
 })();
 
 /* ============================================
-   Formspree — captura de lista de espera
-   ============================================ */
+   Captura de lista de espera → CRM VESALIA
+   ============================================
+   Posta direto no backend do app principal. Cada submit vira uma linha em
+   `vesalia_landing_leads`; aparece na "Inbox Landing" do CRM superadm pra
+   triagem. Formspree foi removido — não dependemos mais de e-mail.
+*/
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjglnkej";
+const LEAD_ENDPOINT = "https://app.vesalia.com.br/api/public/vesalia-leads";
 
 const form = document.getElementById("waitlist-form");
-const formContainer = form.parentElement;
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -89,7 +92,13 @@ form.addEventListener("submit", async (e) => {
   try {
     const data = Object.fromEntries(new FormData(form).entries());
 
-    const response = await fetch(FORMSPREE_ENDPOINT, {
+    // UTMs: persistem entre páginas via querystring. Captura se presente.
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("utm_source"))   data.utm_source   = params.get("utm_source");
+    if (params.has("utm_medium"))   data.utm_medium   = params.get("utm_medium");
+    if (params.has("utm_campaign")) data.utm_campaign = params.get("utm_campaign");
+
+    const response = await fetch(LEAD_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

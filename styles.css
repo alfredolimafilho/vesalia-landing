@@ -1124,4 +1124,62 @@ body > * {
   .floating-nav {
     transition: none;
   }
+
+  .whatsapp-fab {
+    transition: none;
+  }
+}
+
+/* ---------- WhatsApp direto (botão flutuante) ---------- */
+.whatsapp-fab {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  z-index: 110;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px 12px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(10, 10, 10, 0.22);
+  transition:
+    transform 0.4s var(--ease-out-fluid),
+    box-shadow 0.4s var(--ease-out-fluid),
+    gap 0.4s var(--ease-out-fluid);
+}
+
+.whatsapp-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(10, 10, 10, 0.28);
+}
+
+.whatsapp-fab-glyph {
+  width: 22px;
+  height: 22px;
+  fill: var(--paper);
+  flex-shrink: 0;
+}
+
+.whatsapp-fab-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .whatsapp-fab {
+    bottom: 18px;
+    right: 18px;
+    padding: 13px;
+  }
+  /* No mobile colapsa pro ícone — não cobre o conteúdo nem o CTA do form */
+  .whatsapp-fab-label {
+    display: none;
+  }
 }

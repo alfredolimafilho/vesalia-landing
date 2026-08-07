@@ -4,6 +4,16 @@
       "source": "/briefing/:token",
       "destination": "https://app.vesalia.com.br/briefing/:token",
       "type": 302
+    },
+    {
+      "source": "/legal/exclusao",
+      "destination": "/legal/exclusao-dados",
+      "type": 301
+    },
+    {
+      "source": "/legal",
+      "destination": "/legal/privacidade",
+      "type": 302
     }
   ]
 }

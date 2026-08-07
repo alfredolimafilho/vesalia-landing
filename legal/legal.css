@@ -1,0 +1,119 @@
+/* ============================================
+   VESALIA — Páginas legais (LGPD)
+   Documentos públicos servidos como HTML estático,
+   no mesmo domínio da home (exigência de verificação
+   Google OAuth e dos contratos SaaS).
+
+   FONTE CANÔNICA DO TEXTO:
+   repositório do app → client/src/pages/Legal/*.tsx
+   Ao republicar uma política, atualize os dois lugares.
+   ============================================ */
+
+:root {
+  --ink:      #0A0A0A;
+  --paper:    #FAFAF7;
+  --gold:     #A8884A;
+  --muted:    #6B6B6B;
+  --hairline: rgba(10, 10, 10, 0.12);
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans:  "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Cabeçalho ---------- */
+.legal-header { background: #0A0A0A; border-bottom: 1px solid var(--hairline); }
+.legal-brand {
+  display: block; max-width: 820px; margin: 0 auto;
+  padding: 20px 24px; text-decoration: none;
+}
+.legal-wordmark {
+  display: block; font-family: var(--font-serif); font-size: 15px;
+  font-weight: 500; letter-spacing: 0.22em; color: var(--gold);
+}
+.legal-descriptor {
+  display: block; margin-top: 3px; font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #9A9A9A;
+}
+
+/* ---------- Navegação entre documentos ---------- */
+.legal-nav {
+  background: #fff; border-bottom: 1px solid var(--hairline);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.legal-nav-inner {
+  display: flex; gap: 28px; max-width: 820px; margin: 0 auto;
+  padding: 14px 24px; font-size: 14px;
+}
+.legal-nav a {
+  white-space: nowrap; text-decoration: none; color: var(--muted);
+  padding-bottom: 4px; border-bottom: 2px solid transparent; transition: color .2s;
+}
+.legal-nav a:hover { color: var(--ink); }
+.legal-nav a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--gold); }
+
+/* ---------- Corpo do documento ---------- */
+.legal-main { max-width: 820px; margin: 0 auto; padding: 56px 24px 32px; }
+.legal-main > h1 {
+  font-family: var(--font-serif); font-size: 34px; font-weight: 400;
+  line-height: 1.2; letter-spacing: -0.01em;
+}
+.legal-main > h1 + p { margin-top: 10px; color: var(--muted); font-size: 14px; }
+.legal-main h2 {
+  font-family: var(--font-serif); font-size: 22px; font-weight: 500;
+  margin-top: 44px; line-height: 1.3;
+}
+.legal-main h3 { font-size: 16px; font-weight: 600; margin-top: 26px; }
+.legal-main p { margin-top: 16px; color: #2A2A2A; }
+.legal-main ul, .legal-main ol { margin: 14px 0 0 22px; color: #2A2A2A; }
+.legal-main li { margin-top: 7px; }
+.legal-main strong { font-weight: 600; color: var(--ink); }
+.legal-main a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+
+.callout, .callout-atencao {
+  margin-top: 22px; padding: 14px 18px; font-size: 14.5px;
+  border-left: 4px solid var(--gold); background: #F3EFE6; color: #3A3A3A;
+}
+.callout-atencao { border-left-color: #E0B97A; background: #FDF6E8; color: #5C4015; }
+.callout p:first-child, .callout-atencao p:first-child { margin-top: 0; }
+
+/* Chamada pro formulário oficial (que vive no app, com backend) */
+.legal-cta {
+  display: inline-block; margin-top: 4px; padding: 12px 22px;
+  background: var(--ink); color: #FAFAF7 !important; font-size: 15px;
+  font-weight: 500; text-decoration: none !important; transition: opacity .2s;
+}
+.legal-cta:hover { opacity: .85; }
+
+/* ---------- Rodapé ---------- */
+.legal-footer {
+  margin-top: 64px; border-top: 1px solid var(--hairline); background: #fff;
+  max-width: 100%; font-size: 12.5px; color: #7A7A7A;
+}
+.legal-footer > div { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+.legal-footer > div:first-child { padding-top: 30px; }
+.legal-footer > div:last-child { padding-bottom: 34px; }
+.legal-footer-marca { font-weight: 600; color: #4A4A4A; margin-bottom: 6px; }
+.legal-footer-dpo { margin-top: 14px; }
+.legal-footer-voltar { margin-top: 14px; }
+.legal-footer a { color: #4A4A4A; }
+
+/* ---------- Telas pequenas ---------- */
+@media (max-width: 640px) {
+  .legal-main { padding: 36px 20px 24px; }
+  .legal-main > h1 { font-size: 27px; }
+  .legal-main h2 { font-size: 19px; margin-top: 36px; }
+  .legal-nav-inner { gap: 20px; padding: 12px 20px; }
+  .legal-brand { padding: 18px 20px; }
+  .legal-footer > div { padding-left: 20px; padding-right: 20px; }
+}

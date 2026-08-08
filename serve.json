@@ -11,6 +11,11 @@
       "type": 301
     },
     {
+      "source": "/legal/suboperadores",
+      "destination": "/legal/sub-operadores",
+      "type": 301
+    },
+    {
       "source": "/legal",
       "destination": "/legal/privacidade",
       "type": 302

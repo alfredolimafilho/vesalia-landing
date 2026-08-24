@@ -21,7 +21,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css">
+  <!-- ?v= obrigatório: o Cloudflare cacheia /styles.css por 4h na borda, mas o
+       HTML é DYNAMIC (nunca cacheado). Sem a versão na URL, uma mudança de CSS
+       só aparece horas depois — e nesse meio-tempo a página vai ao ar com o
+       HTML novo e o estilo velho. Bump a cada alteração de estilo/script. -->
+  <link rel="stylesheet" href="/styles.css?v=20260824-askv">
 </head>
 <body>
 
@@ -387,6 +391,6 @@
     </div>
   </footer>
 
-  <script src="/script.js"></script>
+  <script src="/script.js?v=20260824-askv"></script>
 </body>
 </html>

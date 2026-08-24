@@ -425,6 +425,152 @@ body > * {
 }
 
 /* ============================================
+   ASK V — o copiloto clínico
+   ============================================ */
+.askv {
+  padding: var(--space-xxl) var(--space-md);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.askv-body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* A gravura vem num quadrado de fundo escuro: o recorte circular
+   é feito aqui, com um respiro pra não sobrar borda preta. */
+.askv-mark {
+  position: sticky;
+  top: var(--space-lg);
+  display: flex;
+  justify-content: center;
+}
+
+.askv-mark img {
+  width: 100%;
+  max-width: 260px;
+  /* height: auto é obrigatório — o atributo height="512" do HTML é hint de
+     apresentação e venceria o aspect-ratio, achatando a gravura num oval. */
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  transform: scale(1.035);
+  display: block;
+}
+
+.askv-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.askv-lede {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(19px, 2vw, 23px);
+  line-height: 1.4;
+  color: var(--gold);
+  margin-top: var(--space-xs);
+}
+
+.askv-prose {
+  margin-top: var(--space-md);
+  max-width: 62ch;
+}
+
+.askv-prose p {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.askv-list {
+  list-style: none;
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.askv-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--ink);
+}
+
+.askv-item-number {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.askv-item-name {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.askv-item-text {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.askv-note {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 64ch;
+}
+
+@media (max-width: 900px) {
+  .askv-body {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .askv-mark {
+    position: static;
+    justify-content: flex-start;
+  }
+
+  .askv-mark img {
+    max-width: 180px;
+  }
+
+  .askv-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
+/* ============================================
    OBJEÇÕES / FAQ
    ============================================ */
 .faq {

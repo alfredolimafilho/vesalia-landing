@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vesalia | Clinical Operations</title>
-  <meta name="description" content="Vesalia é a infraestrutura operacional das clínicas médicas premium. Inclui o Ask V, o copiloto clínico da Vesalia. Infraestrutura, não software.">
+  <meta name="description" content="Vesalia é a infraestrutura operacional das clínicas médicas premium. Inclui o Ask V, o copiloto clínico que atende dentro do sistema e no WhatsApp. Infraestrutura, não software.">
   <meta name="theme-color" content="#FAFAF7">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Vesalia | Clinical Operations">
-  <meta property="og:description" content="Infraestrutura, não software. Para clínicas médicas premium. Com Ask V, o copiloto clínico.">
+  <meta property="og:description" content="Infraestrutura, não software. Para clínicas médicas premium. Com Ask V, o copiloto clínico — no sistema e no WhatsApp.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
 
@@ -25,7 +25,7 @@
        HTML é DYNAMIC (nunca cacheado). Sem a versão na URL, uma mudança de CSS
        só aparece horas depois — e nesse meio-tempo a página vai ao ar com o
        HTML novo e o estilo velho. Bump a cada alteração de estilo/script. -->
-  <link rel="stylesheet" href="/styles.css?v=20260824-askv">
+  <link rel="stylesheet" href="/styles.css?v=20260824-askv2">
 </head>
 <body>
 
@@ -195,9 +195,11 @@
 
     <div class="askv-body">
       <figure class="askv-mark reveal">
-        <img src="/assets/ask-v-avatar-512.jpg"
-             alt="Ask V — o copiloto clínico da Vesalia"
-             width="512" height="512" loading="lazy" decoding="async">
+        <div class="askv-medal">
+          <img src="/assets/ask-v-avatar-512.jpg"
+               alt="Ask V — o copiloto clínico da Vesalia"
+               width="512" height="512" loading="lazy" decoding="async">
+        </div>
       </figure>
 
       <div class="askv-copy">
@@ -205,28 +207,28 @@
         <p class="askv-lede reveal">O copiloto clínico da Vesalia Clinical Operations. V de Vesalius — o mesmo que preferiu conferir a repetir.</p>
 
         <div class="askv-prose reveal">
-          <p>Ask V vive dentro da operação da sua clínica. Não é um chat à parte que você abre quando lembra: ele está no inbox, no prontuário e nos números, lendo os dados que já são seus.</p>
+          <p>Ask V vive em dois lugares: dentro do sistema e no WhatsApp. Não é um chat à parte que você abre quando lembra — é o copiloto que já está onde a clínica trabalha.</p>
         </div>
 
         <ol class="askv-list stagger-children">
           <li class="askv-item">
             <span class="askv-item-number">01</span>
-            <h3 class="askv-item-name">No inbox</h3>
-            <p class="askv-item-text">Lê a conversa, classifica o lead e escreve a resposta sugerida — sempre com a razão visível.</p>
+            <h3 class="askv-item-name">Dentro do sistema</h3>
+            <p class="askv-item-text">No inbox, peneira o lead e escreve a resposta sugerida. No prontuário, transcreve a consulta e organiza a evolução. Nos números, lê a operação inteira.</p>
           </li>
           <li class="askv-item">
             <span class="askv-item-number">02</span>
-            <h3 class="askv-item-name">No prontuário</h3>
-            <p class="askv-item-text">Transcreve a consulta gravada e organiza a evolução, sem tirar o médico do atendimento.</p>
+            <h3 class="askv-item-name">No WhatsApp</h3>
+            <p class="askv-item-text">Do celular, entre uma consulta e outra, sem abrir o computador. Você pergunta em português comum — quanto entrou hoje, quem falta confirmar amanhã — e ele responde com o dado da sua clínica.</p>
           </li>
           <li class="askv-item">
             <span class="askv-item-number">03</span>
-            <h3 class="askv-item-name">Nos números</h3>
-            <p class="askv-item-text">Responde em linguagem comum o que a clínica pergunta da própria operação — agenda, funil, financeiro.</p>
+            <h3 class="askv-item-name">Com a razão à vista</h3>
+            <p class="askv-item-text">Cada resposta mostra em que dado se apoiou. Nada de número que aparece sem origem.</p>
           </li>
         </ol>
 
-        <p class="askv-note reveal">Ask V sugere; quem decide é a clínica. Cada resposta mostra em que dado se apoiou, e você escolhe se ele só propõe ou se pode agir sozinho.</p>
+        <p class="askv-note reveal">Ask V sugere; quem decide é a clínica. Você escolhe se ele só propõe ou se pode agir sozinho.</p>
       </div>
     </div>
   </section>
@@ -391,6 +393,6 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=20260824-askv"></script>
+  <script src="/script.js?v=20260824-askv2"></script>
 </body>
 </html>

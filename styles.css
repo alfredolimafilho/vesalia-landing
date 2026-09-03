@@ -1928,12 +1928,13 @@ body > * {
   position: relative;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  /* O teatro (recorte da arte, SEM o logo embutido — o corte responsivo
-     decapitava a marca) ancora à direita em altura cheia; um gradiente
-     funde a borda esquerda da imagem no azul da chapa, sem emenda. */
+  /* A imagem COBRE o banner inteiro (cover, ancorada à direita) — em
+     altura-cheia ela deixava uma emenda vertical no meio em telas largas.
+     O gradiente só escurece o lado do texto; não tenta casar com a borda
+     da imagem, então não existe emenda possível. */
   background:
-    linear-gradient(to right, var(--navy) 0%, var(--navy) 30%, rgba(26, 43, 63, 0) 62%),
-    var(--navy) url("/assets/capa-teatro-anatomico.jpg") right center / auto 100% no-repeat;
+    linear-gradient(to right, rgba(20, 34, 52, 0.94) 0%, rgba(20, 34, 52, 0.62) 42%, rgba(20, 34, 52, 0.12) 72%),
+    var(--navy) url("/assets/capa-teatro-anatomico.jpg") right center / cover no-repeat;
   padding-bottom: var(--space-lg);
 }
 
@@ -1941,17 +1942,26 @@ body > * {
   max-width: 62ch;
 }
 
-/* A marca assina o topo; a headline assenta embaixo, sem competir. */
+/* A marca sobrepõe o banner, em evidência. */
+.hero-logo {
+  width: clamp(300px, 36vw, 520px);
+}
+
+/* A headline assenta embaixo, sem competir com a marca. */
 .hero .tagline {
   font-size: clamp(44px, 6.5vw, 92px);
 }
 
 @media (max-width: 900px) {
-  /* Mobile: o teatro recolhe pra marca e o texto respirarem. */
+  /* Mobile: cover mantém o teatro presente à direita, sem emenda. */
   .hero {
     background:
-      linear-gradient(to bottom, rgba(26, 43, 63, 0.55) 0%, rgba(26, 43, 63, 0.85) 60%, var(--navy) 100%),
-      var(--navy) url("/assets/capa-teatro-anatomico.jpg") right -40px center / auto 70% no-repeat;
+      linear-gradient(to bottom, rgba(20, 34, 52, 0.6) 0%, rgba(20, 34, 52, 0.88) 70%, var(--navy) 100%),
+      var(--navy) url("/assets/capa-teatro-anatomico.jpg") 70% center / cover no-repeat;
+  }
+
+  .hero-logo {
+    width: clamp(240px, 60vw, 360px);
   }
 }
 

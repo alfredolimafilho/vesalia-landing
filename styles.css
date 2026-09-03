@@ -13,6 +13,14 @@
   --muted:      #6B6B6B;
   --hairline:   rgba(10, 10, 10, 0.12);
 
+  /* Azul anatômico e pergaminho — a dupla da marca, a mesma do app e dos
+     avatares. 🚨 O pergaminho vale SÓ sobre o azul profundo; sobre fundo
+     claro ele some, porque não é ouro, é marfim quente. */
+  --navy:        #1A2B3F;
+  --navy-deep:   #142234;
+  --pergaminho:  #FAEDCB;
+  --hairline-on-navy: rgba(250, 237, 203, 0.18);
+
   /* Tipografia */
   --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
   --font-sans:  "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
@@ -133,55 +141,14 @@ body > * {
   width: fit-content;
 }
 
-.wordmark {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: clamp(28px, 4vw, 42px);
-  letter-spacing: 0.18em;
-  line-height: 1;
-  color: var(--ink);
+/* O logotipo é imagem. A régua e o descritor que existiam aqui em <span> +
+   CSS foram removidos junto com o wordmark de texto: o arquivo oficial já
+   traz os três, e a versão desenhada à mão nunca bateu com ele. */
+.hero-logo {
+  display: block;
+  width: clamp(190px, 22vw, 268px);
+  height: auto;
 }
-
-.descriptor {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-/* Régua técnica (tributo Vesalius) — largura segue o wordmark */
-.rule {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  width: 100%;
-  height: 14px;
-  position: relative;
-}
-
-.rule-line {
-  position: absolute;
-  inset: 50% 0 auto 0;
-  height: 1px;
-  background: var(--ink);
-}
-
-.rule-tick {
-  flex: 1;
-  height: 6px;
-  border-left: 1px solid var(--ink);
-  position: relative;
-  z-index: 1;
-}
-
-.rule-tick:last-child {
-  border-right: 1px solid var(--ink);
-}
-
-.rule-tick-major { height: 12px; }
-.rule-tick-medium { height: 9px; }
 
 /* Tagline central */
 .hero-body {
@@ -483,7 +450,6 @@ body > * {
   object-fit: cover;
   transform: scale(1.035);
   display: block;
-  filter: invert(1) grayscale(1) contrast(1.12) brightness(1.0);
 }
 
 .askv-title {
@@ -860,21 +826,10 @@ body > * {
   gap: 6px;
 }
 
-.footer-wordmark {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: 22px;
-  letter-spacing: 0.18em;
-  color: var(--ink);
-}
-
-.footer-descriptor {
-  font-family: var(--font-sans);
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--muted);
+.footer-logo {
+  display: block;
+  width: 168px;
+  height: auto;
 }
 
 .footer-meta {
@@ -1099,12 +1054,15 @@ body > * {
 }
 
 .floating-wordmark {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: 17px;
-  letter-spacing: 0.22em;
-  color: var(--ink);
+  display: block;
+  line-height: 0;
   text-decoration: none;
+}
+
+.floating-wordmark img {
+  display: block;
+  width: 104px;
+  height: auto;
 }
 
 .floating-cta {
@@ -1362,4 +1320,772 @@ body > * {
   .whatsapp-fab-label {
     display: none;
   }
+}
+
+/* ============================================
+   PREÇO NO HERO + AÇÕES (v20260903-planos1)
+   ============================================ */
+.hero-price {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-top: var(--space-md);
+  max-width: 520px;
+}
+
+.hero-price strong {
+  font-weight: 600;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hero-cta-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: none;
+  padding: 14px 22px;
+}
+
+.hero-cta-primary:hover {
+  background: #1c1c1c;
+}
+
+/* ============================================
+   PLANOS
+   ============================================ */
+.plans {
+  padding: var(--space-xxl) var(--space-md);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg) var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--ink);
+}
+
+/* Atrium é a entrada — leva o fio de ouro da casa */
+.plan-atrium {
+  border-top: 3px solid var(--gold);
+}
+
+.plan-kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.plan-name {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.plan-price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.plan-price-main {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.plan-price-per {
+  font-size: 16px;
+  color: rgba(10, 10, 10, 0.55);
+}
+
+.plan-price-alt {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(10, 10, 10, 0.6);
+}
+
+.plan-terms {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(10, 10, 10, 0.75);
+}
+
+.plan-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.plan-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+}
+
+.plan-list li:last-child {
+  border-bottom: none;
+}
+
+.plan-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  width: fit-content;
+  transition: gap 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.plan-cta:hover {
+  gap: 18px;
+}
+
+.plan-cta-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: none;
+  padding: 14px 22px;
+}
+
+.plan-cta-primary:hover {
+  background: #1c1c1c;
+}
+
+.plan-footnote {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(10, 10, 10, 0.55);
+}
+
+@media (max-width: 768px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .plan-price-main {
+    font-size: 34px;
+  }
+}
+
+/* ============================================
+   CAMADA 03/09/2026 — contraste e ritmo
+   ============================================
+   A página era creme sobre creme do topo ao rodapé: elegante e monótona,
+   sem nada que segurasse o olho entre uma seção e outra. O que entra aqui
+   não muda a voz — mantém a serifa editorial e a prosa — só dá ao clássico
+   os pontos de respiro e de peso que faltavam:
+     · uma faixa de prova em azul logo abaixo do hero;
+     · a seção do Ask V invertida em azul anatômico, onde o medalhão claro
+       do copiloto finalmente pousa sobre o fundo pra que foi desenhado;
+     · o Atelier como chapa escura no comparativo de planos;
+     · medalhão reaproveitado no comercial, pra ler como a mesma família.
+   Paleta sem invenção: azul #1A2B3F e pergaminho #FAEDCB, os mesmos do
+   app e dos avatares. 🚨 Pergaminho SÓ sobre azul. */
+
+/* ---------- Faixa de prova ---------- */
+.proof {
+  width: 100%;
+  max-width: none;
+  background: var(--navy);
+  color: var(--pergaminho);
+  padding: clamp(28px, 5vw, 52px) var(--space-md);
+}
+
+.proof-list {
+  list-style: none;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.proof-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: var(--space-sm);
+  border-left: 1px solid var(--hairline-on-navy);
+}
+
+.proof-figure {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--pergaminho);
+}
+
+.proof-label {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(250, 237, 203, 0.66);
+}
+
+@media (max-width: 860px) {
+  .proof-list { grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); }
+}
+
+@media (max-width: 460px) {
+  .proof-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- Medalhão (Ask V e comercial) ---------- */
+/* 🚨 Os avatares NÃO têm transparência: os cantos são preto de verdade.
+   O border-radius + overflow:hidden é o que impede a mancha preta de
+   aparecer nos quatro cantos. Não trocar por <img> solto. */
+.medal {
+  width: 100%;
+  max-width: 208px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+.medal img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transform: scale(1.035);
+  display: block;
+}
+
+.medal-dark {
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.14),
+              0 18px 40px -22px rgba(26, 43, 63, 0.55);
+}
+
+/* ---------- Ask V em chapa escura ---------- */
+.askv {
+  max-width: none;
+  width: 100%;
+  background: var(--navy);
+  color: var(--pergaminho);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.askv > * {
+  max-width: var(--max-wide);
+  margin-inline: auto;
+}
+
+.askv .section-meta {
+  color: rgba(250, 237, 203, 0.55);
+  border-bottom-color: var(--hairline-on-navy);
+}
+
+.askv .section-meta .meta-label { color: var(--pergaminho); }
+
+.askv .askv-title,
+.askv .askv-item-name { color: var(--pergaminho); }
+
+.askv .askv-lede { color: rgba(250, 237, 203, 0.78); }
+
+.askv .askv-prose p,
+.askv .askv-item-text,
+.askv .askv-note { color: rgba(250, 237, 203, 0.66); }
+
+.askv .askv-item-number { color: rgba(250, 237, 203, 0.42); }
+
+.askv .askv-item { border-top-color: var(--hairline-on-navy); }
+
+.askv .askv-note { border-top-color: var(--hairline-on-navy); }
+
+/* O medalhão claro sobre o azul: é o contraste pra que o avatar v2 foi
+   desenhado. No creme ele quase desaparecia. */
+.askv-medal {
+  box-shadow: 0 0 0 1px var(--hairline-on-navy),
+              0 24px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- Planos: o Atelier em chapa ---------- */
+.plan-atelier {
+  background: var(--navy);
+  color: var(--pergaminho);
+  border-color: transparent;
+  padding: var(--space-md);
+  border-radius: 2px;
+}
+
+.plan-atelier .plan-kicker { color: rgba(250, 237, 203, 0.6); }
+.plan-atelier .plan-name,
+.plan-atelier .plan-price-main { color: var(--pergaminho); }
+.plan-atelier .plan-price-per,
+.plan-atelier .plan-price-alt,
+.plan-atelier .plan-terms,
+.plan-atelier .plan-footnote { color: rgba(250, 237, 203, 0.62); }
+.plan-atelier .plan-list li {
+  color: rgba(250, 237, 203, 0.86);
+  border-bottom-color: var(--hairline-on-navy);
+}
+.plan-atelier .plan-cta {
+  color: var(--pergaminho);
+  border-color: var(--pergaminho);
+}
+.plan-atelier .plan-header { border-bottom-color: var(--hairline-on-navy); }
+
+/* ---------- Comercial: rosto ao lado do convite ---------- */
+.waitlist-intro {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.waitlist-face { margin: 0; }
+.waitlist-face .medal { max-width: 132px; }
+
+@media (max-width: 640px) {
+  .waitlist-intro { grid-template-columns: 1fr; gap: var(--space-sm); }
+  .waitlist-face .medal { max-width: 104px; }
+}
+
+/* ---------- Pilares: a grade era de 5, os pilares são 6 ---------- */
+/* O arranjo 3+2 centralizado (nth-child 1..5) deixava o sexto pilar órfão
+   numa terceira linha sozinho, com dois buracos ao lado. Com seis, a grade
+   honesta é 3×2. */
+.pillar-list { grid-template-columns: repeat(3, 1fr); }
+.pillar:nth-child(1),
+.pillar:nth-child(2),
+.pillar:nth-child(3),
+.pillar:nth-child(4),
+.pillar:nth-child(5),
+.pillar:nth-child(6) { grid-column: auto; }
+
+@media (max-width: 900px) {
+  .pillar-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 620px) {
+  .pillar-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- Hero: composição em duas colunas ---------- */
+/* O hero era uma coluna de texto à esquerda e metade da tela vazia à direita,
+   esticada por min-height:100vh. Em tela grande virava um vão. Agora a gravura
+   ocupa a direita e a altura deixa a faixa azul espiar por baixo da dobra —
+   quem chega já vê que a página continua. */
+.hero { min-height: 92vh; }
+
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  max-width: none;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 62ch;
+}
+
+/* A gravura anatômica saiu do hero (pedido do Alfredo, 03/09) — a capa é da
+   marca. A marca d'água genérica do .manifesto continua desligada: o § 01
+   agora tem o RETRATO do Vesalius como figura de verdade (.portrait). */
+.manifesto::before { content: none; }
+
+/* ---------- Respiro: 192px entre seções era vão, não pausa ---------- */
+.pillars,
+.coverage,
+.manifesto,
+.plans,
+.faq,
+.waitlist { padding-top: clamp(84px, 11vw, 140px); padding-bottom: clamp(84px, 11vw, 140px); }
+
+.askv { padding-top: clamp(84px, 11vw, 140px); padding-bottom: clamp(84px, 11vw, 140px); }
+
+/* ============================================
+   CAPA ESCURA (v20260903-capa3)
+   Pedido do Alfredo: trabalhar o azul profundo da paleta, logo em
+   evidência, capa de entrada de verdade. Pergaminho SÓ sobre o azul.
+   ============================================ */
+.hero {
+  max-width: none;
+  margin: 0;
+  background: var(--navy);
+  /* full-bleed com conteúdo alinhado à coluna das outras seções */
+  padding-left: max(var(--space-md), calc((100vw - var(--max-wide)) / 2 + var(--space-md)));
+  padding-right: max(var(--space-md), calc((100vw - var(--max-wide)) / 2 + var(--space-md)));
+}
+
+.hero-logo {
+  width: clamp(240px, 30vw, 400px);
+}
+
+.hero .tagline {
+  color: var(--paper);
+}
+
+.hero .lede {
+  color: rgba(250, 250, 247, 0.88);
+}
+
+.hero .hero-description {
+  color: rgba(250, 250, 247, 0.68);
+}
+
+.hero .hero-price {
+  color: rgba(250, 250, 247, 0.88);
+}
+
+.hero .hero-price strong {
+  color: var(--pergaminho);
+}
+
+.hero .hero-cta {
+  color: var(--paper);
+  border-bottom-color: var(--paper);
+}
+
+.hero .hero-cta-primary {
+  background: var(--pergaminho);
+  color: var(--navy);
+  border-bottom: none;
+  font-weight: 600;
+}
+
+.hero .hero-cta-primary:hover {
+  background: #f3e2b4;
+}
+
+/* A faixa de prova cola na capa — mesmo azul, separada por um fio de
+   pergaminho. Juntas, elas SÃO a capa: marca, promessa, preço e fatos. */
+.proof {
+  border-top: 1px solid var(--hairline-on-navy);
+}
+
+/* ============================================
+   § 01 — RETRATO DO VESALIUS
+   ============================================ */
+.manifesto-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.portrait {
+  margin: 0;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* multiply casa o papel da xilogravura com o creme do fundo */
+  mix-blend-mode: multiply;
+  filter: contrast(1.04);
+}
+
+.portrait figcaption {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .manifesto-body { grid-template-columns: 1fr; }
+  .portrait { max-width: 260px; }
+}
+
+/* ============================================
+   O DEGRAU — a virada Atrium → Atelier
+   ============================================ */
+.step {
+  width: 100%;
+  background: var(--navy-deep);
+  color: var(--paper);
+  padding: clamp(72px, 10vw, 140px) var(--space-md);
+}
+
+.step-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.step .section-meta {
+  border-bottom-color: var(--hairline-on-navy);
+}
+
+.step .meta-label,
+.step .meta-title {
+  color: rgba(250, 237, 203, 0.62);
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(36px, 5.5vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  margin-bottom: var(--space-md);
+  font-variation-settings: "opsz" 144;
+}
+
+.step-text {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(20px, 2.2vw, 27px);
+  line-height: 1.5;
+  color: rgba(250, 250, 247, 0.82);
+  max-width: 680px;
+  margin-bottom: var(--space-md);
+}
+
+.step-name {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pergaminho);
+  margin-bottom: var(--space-lg);
+}
+
+.step-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pergaminho);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--pergaminho);
+  width: fit-content;
+  transition: gap 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.step-cta:hover {
+  gap: 18px;
+}
+
+/* ============================================
+   CAPA-BANNER (v20260903-capa5)
+   A imagem oficial da casa — azul texturizado + teatro anatômico + logo
+   composto — é o palco. O conteúdo assenta embaixo à esquerda; um
+   gradiente na base garante a leitura sobre a textura.
+   ============================================ */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  /* A imagem COBRE o banner inteiro (cover, ancorada à direita) — em
+     altura-cheia ela deixava uma emenda vertical no meio em telas largas.
+     O gradiente só escurece o lado do texto; não tenta casar com a borda
+     da imagem, então não existe emenda possível. */
+  background:
+    linear-gradient(to right, rgba(20, 34, 52, 0.94) 0%, rgba(20, 34, 52, 0.62) 42%, rgba(20, 34, 52, 0.12) 72%),
+    var(--navy) url("/assets/capa-teatro-anatomico.jpg") right center / cover no-repeat;
+  padding-bottom: var(--space-lg);
+}
+
+.hero-copy {
+  max-width: 62ch;
+}
+
+/* A marca sobrepõe o banner, em evidência. */
+.hero-logo {
+  width: clamp(300px, 36vw, 520px);
+}
+
+/* A headline assenta embaixo, sem competir com a marca. */
+.hero .tagline {
+  font-size: clamp(44px, 6.5vw, 92px);
+}
+
+@media (max-width: 900px) {
+  /* Mobile: cover mantém o teatro presente à direita, sem emenda. */
+  .hero {
+    background:
+      linear-gradient(to bottom, rgba(20, 34, 52, 0.6) 0%, rgba(20, 34, 52, 0.88) 70%, var(--navy) 100%),
+      var(--navy) url("/assets/capa-teatro-anatomico.jpg") 70% center / cover no-repeat;
+  }
+
+  .hero-logo {
+    width: clamp(240px, 60vw, 360px);
+  }
+}
+
+/* A faixa pós-capa vira a PLATAFORMA EM TÓPICOS (o preço saiu da primeira
+   dobra — plano é capítulo próprio). Mesma chapa azul, itens curtos. */
+.proof-topics {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: var(--max-wide);
+  display: grid;
+  /* 12 itens em 4 colunas — 3 linhas cheias, sem sobra */
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm) var(--space-md);
+}
+
+.proof-topics li {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgba(250, 237, 203, 0.82);
+  padding: 10px 0;
+  border-top: 1px solid var(--hairline-on-navy);
+}
+
+@media (max-width: 1024px) {
+  .proof-topics { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .proof-topics { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================
+   BANNERS DE PLANO — cada plano com a própria grafia
+   Atrium: ouro de selo sobre o creme. Atelier: pergaminho sobre o azul.
+   (Os dois ouros nunca convivem na mesma peça — regra da paleta.)
+   ============================================ */
+.plan-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: var(--space-lg) 0 var(--space-md);
+  padding-top: var(--space-sm);
+}
+
+.plan-banner-kicker {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.plan-banner-name {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+}
+
+.plan-banner-atrium {
+  border-top: 3px solid var(--gold);
+}
+
+.plan-banner-atrium .plan-banner-kicker {
+  color: var(--gold);
+}
+
+.plan-banner-atrium .plan-banner-name {
+  color: var(--ink);
+}
+
+.plan-banner-atelier {
+  border-top: 3px solid var(--pergaminho);
+  margin-bottom: var(--space-lg);
+}
+
+.plan-banner-atelier .plan-banner-kicker {
+  color: rgba(250, 237, 203, 0.75);
+}
+
+.plan-banner-atelier .plan-banner-name {
+  color: var(--pergaminho);
+}
+
+/* ============================================
+   VESA (v20260903-vesa1)
+   A IA voltou a se chamar Vesa; "Ask Vesa" é a ação. O avatar atual
+   ainda traz "Ask V." gravado na arte — até nascer o avatar do Vesa,
+   o zoom ancorado no alto esconde o rótulo fora do medalhão.
+   ============================================ */
+.askv-medal img {
+  transform: scale(1.34);
+  transform-origin: 50% 22%;
+}
+
+/* Soberania como faixa horizontal compacta (pedido 03/09: falar sem dar
+   palco de seção inteira com vazio do lado). */
+.coverage-compact {
+  padding-top: clamp(56px, 7vw, 88px);
+  padding-bottom: clamp(56px, 7vw, 88px);
+}
+
+.coverage-compact .coverage-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 860px) {
+  .coverage-compact .coverage-grid { grid-template-columns: 1fr; }
+}
+
+/* Subtítulo do convite final ("Vamos iniciar?") */
+.waitlist-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: var(--space-sm);
+  font-variation-settings: "opsz" 144;
 }

@@ -25,7 +25,7 @@
        HTML é DYNAMIC (nunca cacheado). Sem a versão na URL, uma mudança de CSS
        só aparece horas depois — e nesse meio-tempo a página vai ao ar com o
        HTML novo e o estilo velho. Bump a cada alteração de estilo/script. -->
-  <link rel="stylesheet" href="/styles.css?v=20260903-planos1">
+  <link rel="stylesheet" href="/styles.css?v=20260903-marca2">
 </head>
 <body>
 
@@ -45,8 +45,15 @@
   <!-- ============================================ -->
   <!-- STICKY NAV (aparece após scrollar o hero) -->
   <!-- ============================================ -->
+  <!-- 🚨 A marca é ARQUIVO, nunca texto com font-serif. O logotipo tem
+       desenho próprio (Didone de alto contraste + régua + descritor); escrito
+       em Fraunces, como estava aqui, sai parecido e errado — foi o que o
+       Alfredo apontou em 03/09. Mesmo arquivo do sistema
+       (client/public/vesalia-logo-black.png) e da pasta VESALIA.co/Logos. -->
   <nav class="floating-nav" aria-hidden="true">
-    <a href="#" class="floating-wordmark">VESALIA</a>
+    <a href="#" class="floating-wordmark" aria-label="Vesalia — Clinical Operations">
+      <img src="/assets/vesalia-logo-black.png" alt="Vesalia" width="900" height="450" decoding="async">
+    </a>
     <a href="#planos" class="floating-cta">
       <span>Ver planos</span>
       <span class="arrow">↓</span>
@@ -58,25 +65,31 @@
   <!-- ============================================ -->
   <section class="hero">
     <header class="hero-header">
+      <!-- Um arquivo só: o logotipo oficial já traz letra, régua e descritor.
+           A régua montada à mão em <span> que existia aqui nunca bateu com a
+           do arquivo — espaçamento e traço são desenho, não CSS. -->
       <div class="hero-mark">
-        <span class="wordmark">VESALIA</span>
-        <div class="rule">
-          <span class="rule-line"></span>
-          <span class="rule-tick rule-tick-major"></span>
-          <span class="rule-tick"></span>
-          <span class="rule-tick rule-tick-medium"></span>
-          <span class="rule-tick"></span>
-          <span class="rule-tick rule-tick-major"></span>
-        </div>
-        <span class="descriptor">CLINICAL OPERATIONS</span>
+        <img class="hero-logo" src="/assets/vesalia-logo-black.png"
+             alt="Vesalia — Clinical Operations" width="900" height="450" fetchpriority="high">
       </div>
     </header>
 
+    <!-- A gravura saiu da marca d'água do § 01 e veio pra cá. Lá ela era um
+         cinza de 30% atrás do texto, que ninguém via; aqui ela é metade da
+         composição e resolve o vazio da direita — que era o "sem graça" do
+         hero. A atribuição Wellcome/CC BY continua no rodapé. -->
     <div class="hero-body">
-      <h1 class="tagline">A clínica<br>em ordem.</h1>
-      <p class="lede">Agenda, prontuário, receituário, financeiro e atendimento — num sistema só.</p>
-      <p class="hero-description">A Vesalia é a infraestrutura operacional da clínica: o prontuário se escreve com você por voz, a receita sai com base de medicamentos e assinatura digital, o financeiro fecha a conta, e a IA atende quem chega. Construída dentro de uma clínica cirúrgica. Aberta a qualquer especialidade.</p>
-      <p class="hero-price">Vesalia Atrium — <strong>R$ 890/mês</strong>, profissionais ilimitados, sem carência. Você cria a clínica hoje e entra hoje.</p>
+      <div class="hero-copy">
+        <h1 class="tagline">A clínica<br>em ordem.</h1>
+        <p class="lede">Agenda, prontuário, receituário, financeiro e atendimento — num sistema só.</p>
+        <p class="hero-description">A Vesalia é a infraestrutura operacional da clínica: o prontuário se escreve com você por voz, a receita sai com base de medicamentos e assinatura digital, o financeiro fecha a conta, e a IA atende quem chega. Construída dentro de uma clínica cirúrgica. Aberta a qualquer especialidade.</p>
+        <p class="hero-price">Vesalia Atrium — <strong>R$ 890/mês</strong>, profissionais ilimitados, sem carência. Você cria a clínica hoje e entra hoje.</p>
+      </div>
+
+      <figure class="hero-plate" aria-hidden="true">
+        <img src="/assets/vesalius-fabrica.jpg" alt="" width="800" height="1200" fetchpriority="high" decoding="async">
+        <figcaption>De humani corporis fabrica · 1543</figcaption>
+      </figure>
     </div>
 
     <div class="hero-actions">
@@ -89,6 +102,34 @@
         <span class="arrow">↓</span>
       </a>
     </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FAIXA DE PROVA — o primeiro contraste da página -->
+  <!-- ============================================ -->
+  <!-- A página inteira era creme sobre creme: bonita e monótona, sem nada que
+       segurasse o olho entre uma seção e outra. Esta faixa em azul anatômico é
+       a primeira quebra, e ela carrega fato, não adjetivo — cada número já
+       estava escrito em prosa mais abaixo. -->
+  <section class="proof" id="prova">
+    <ul class="proof-list">
+      <li class="proof-item">
+        <span class="proof-figure">R$ 890</span>
+        <span class="proof-label">por mês, o consultório inteiro</span>
+      </li>
+      <li class="proof-item">
+        <span class="proof-figure">Ilimitados</span>
+        <span class="proof-label">profissionais e usuários, em qualquer plano</span>
+      </li>
+      <li class="proof-item">
+        <span class="proof-figure">Hoje</span>
+        <span class="proof-label">criou a conta, entrou — sem carência</span>
+      </li>
+      <li class="proof-item">
+        <span class="proof-figure">Zero</span>
+        <span class="proof-label">custo pra exportar tudo e sair</span>
+      </li>
+    </ul>
   </section>
 
   <!-- ============================================ -->
@@ -211,7 +252,11 @@
     <div class="askv-body">
       <figure class="askv-mark reveal">
         <div class="askv-medal">
-          <img src="/assets/ask-v-avatar-512.jpg"
+          <!-- Avatar v2 (aprovado 30/08). O anterior era a chapa ESCURA em JPG,
+               clareada no CSS por `filter: invert(1) grayscale(1)` — gambiarra
+               que matava o azul da marca e devolvia cinza. Este já nasce claro,
+               então o filtro saiu e a cor volta a ser a do arquivo aprovado. -->
+          <img src="/assets/ask-v-avatar.png"
                alt="Ask V — o copiloto clínico da Vesalia"
                width="512" height="512" loading="lazy" decoding="async">
         </div>
@@ -396,8 +441,20 @@
       <span class="meta-title">Conversa</span>
     </div>
 
+    <!-- Retrato do comercial ao lado do convite: do outro lado do formulário
+         existe gente, e um rosto diz isso mais rápido que uma frase. Mesmo
+         tratamento de medalhão do Ask V, pra ler como a mesma família. -->
     <div class="waitlist-intro reveal">
-      <p>O Atrium você cria sozinho, agora. O Atelier começa por uma conversa sobre a sua operação — apresente a clínica abaixo e retornamos em poucos dias com a leitura. Em alguns casos, dizemos que não fazemos sentido pra você.</p>
+      <figure class="waitlist-face">
+        <div class="medal medal-dark">
+          <img src="/assets/avatar-comercial.png"
+               alt="Time comercial da Vesalia"
+               width="512" height="512" loading="lazy" decoding="async">
+        </div>
+      </figure>
+      <div class="waitlist-intro-copy">
+        <p>O Atrium você cria sozinho, agora. O Atelier começa por uma conversa sobre a sua operação — apresente a clínica abaixo e retornamos em poucos dias com a leitura. Em alguns casos, dizemos que não fazemos sentido pra você.</p>
+      </div>
     </div>
 
     <form class="form reveal" id="waitlist-form" novalidate>
@@ -469,8 +526,8 @@
   <!-- ============================================ -->
   <footer class="footer">
     <div class="footer-mark reveal">
-      <span class="footer-wordmark">VESALIA</span>
-      <span class="footer-descriptor">CLINICAL OPERATIONS</span>
+      <img class="footer-logo" src="/assets/vesalia-logo-black.png"
+           alt="Vesalia — Clinical Operations" width="900" height="450" loading="lazy" decoding="async">
     </div>
 
     <div class="footer-meta">
@@ -499,6 +556,6 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=20260903-planos1"></script>
+  <script src="/script.js?v=20260903-marca2"></script>
 </body>
 </html>

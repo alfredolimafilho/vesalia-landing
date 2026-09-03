@@ -1973,7 +1973,8 @@ body > * {
   padding: 0;
   max-width: var(--max-wide);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* 12 itens em 4 colunas — 3 linhas cheias, sem sobra */
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-sm) var(--space-md);
 }
 

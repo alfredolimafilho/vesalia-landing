@@ -25,7 +25,7 @@
        HTML é DYNAMIC (nunca cacheado). Sem a versão na URL, uma mudança de CSS
        só aparece horas depois — e nesse meio-tempo a página vai ao ar com o
        HTML novo e o estilo velho. Bump a cada alteração de estilo/script. -->
-  <link rel="stylesheet" href="/styles.css?v=20260903-capa3">
+  <link rel="stylesheet" href="/styles.css?v=20260903-capa4">
 </head>
 <body>
 
@@ -79,13 +79,29 @@
       </div>
     </header>
 
+    <!-- Feedback do Alfredo (03/09): a capa apresenta TUDO que a casa oferece
+         — por tópicos, não por parágrafo ("nem todo mundo lê texto"). O lado
+         direito, que estava vazio, carrega a grade da plataforma inteira. -->
     <div class="hero-body">
       <div class="hero-copy">
         <h1 class="tagline">A clínica<br>em ordem.</h1>
         <p class="lede">Agenda, prontuário, receituário, financeiro e atendimento — num sistema só.</p>
-        <p class="hero-description">A Vesalia é a infraestrutura operacional da clínica: o prontuário se escreve com você por voz, a receita sai com base de medicamentos e assinatura digital, o financeiro fecha a conta, e a IA atende quem chega. Construída dentro de uma clínica cirúrgica. Aberta a qualquer especialidade.</p>
-        <p class="hero-price">Vesalia Atrium — <strong>R$ 890/mês</strong>, profissionais ilimitados, sem carência. Você cria a clínica hoje e entra hoje.</p>
+        <p class="hero-description">A infraestrutura operacional da clínica. Construída dentro de uma clínica cirúrgica, aberta a qualquer especialidade.</p>
+        <p class="hero-price">Vesalia Atrium — <strong>R$ 890/mês</strong>, profissionais ilimitados, sem carência. Você cria a clínica hoje e entra hoje — depois, quando configurada, importamos o seu backup do sistema atual.</p>
       </div>
+
+      <ul class="hero-topics" aria-label="O que a Vesalia oferece">
+        <li>Prontuário com evolução por voz</li>
+        <li>Receituário CMED · assinatura ICP-Brasil</li>
+        <li>Agenda multi-profissional + teleconsulta</li>
+        <li>CRM conversacional integrado</li>
+        <li>IA qualifica e atende quem chega, 24/7</li>
+        <li>Ask V — copiloto de IA no WhatsApp</li>
+        <li>Financeiro completo, até conciliação e DRE</li>
+        <li>Portal da paciente + pós-operatório</li>
+        <li>Orçamentos, comissões e estoque</li>
+        <li>Exportação total dos dados — sem lock-in</li>
+      </ul>
     </div>
 
     <div class="hero-actions">
@@ -163,8 +179,16 @@
       <span class="meta-title">O consultório</span>
     </div>
 
+    <!-- Cada plano tem grafia própria (pedido do Alfredo, 03/09): o Atrium
+         assina em ouro sobre o creme; o Atelier, em pergaminho sobre o azul
+         (banner no degrau). -->
+    <div class="plan-banner plan-banner-atrium reveal">
+      <span class="plan-banner-kicker">O consultório · R$ 890/mês</span>
+      <span class="plan-banner-name">Vesalia Atrium</span>
+    </div>
+
     <div class="prose reveal">
-      <p>O Vesalia Atrium é o consultório em ordem — o que você usa todos os dias, sem integração, sem treinamento longo. Criou a conta, entrou, atendeu.</p>
+      <p>O consultório em ordem — o que você usa todos os dias, sem integração, sem treinamento longo. Criou a conta, entrou, atendeu.</p>
     </div>
 
     <ol class="pillar-list stagger-children">
@@ -216,7 +240,12 @@
 
       <h2 class="step-title reveal">Quer subir o nível da gestão?</h2>
       <p class="step-text reveal">O Atrium põe o consultório em ordem — e pode ser tudo de que você precisa. Mas quando a clínica quiser captar, vender, acompanhar o pós-operatório e fechar o financeiro no centavo, existe o degrau acima.</p>
-      <p class="step-name reveal">Vesalia Atelier — a operação inteira, com implantação assistida.</p>
+
+      <!-- O banner do Atelier: a assinatura do plano, em pergaminho. -->
+      <div class="plan-banner plan-banner-atelier reveal">
+        <span class="plan-banner-kicker">A clínica completa · R$ 1.530/mês · implantação assistida</span>
+        <span class="plan-banner-name">Vesalia Atelier</span>
+      </div>
 
       <a href="#atelier" class="step-cta reveal">
         <span>Conhecer o Atelier</span>

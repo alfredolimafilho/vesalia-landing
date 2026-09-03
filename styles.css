@@ -1917,3 +1917,106 @@ body > * {
 .step-cta:hover {
   gap: 18px;
 }
+
+/* ============================================
+   GRADE DE TÓPICOS NA CAPA (v20260903-capa4)
+   "Nem todo mundo lê texto" — a plataforma inteira em itens curtos,
+   ocupando o lado direito da capa que estava vazio.
+   ============================================ */
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: var(--space-lg);
+  align-items: center;
+  padding: var(--space-xl) 0;
+  max-width: none;
+}
+
+.hero-topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 var(--space-md);
+  align-self: center;
+}
+
+.hero-topics li {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgba(250, 250, 247, 0.85);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--hairline-on-navy);
+}
+
+.hero-topics li::before {
+  content: "— ";
+  color: var(--pergaminho);
+}
+
+@media (max-width: 960px) {
+  .hero-body { grid-template-columns: 1fr; gap: var(--space-md); }
+  .hero-topics { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 560px) {
+  .hero-topics { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   BANNERS DE PLANO — cada plano com a própria grafia
+   Atrium: ouro de selo sobre o creme. Atelier: pergaminho sobre o azul.
+   (Os dois ouros nunca convivem na mesma peça — regra da paleta.)
+   ============================================ */
+.plan-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: var(--space-lg) 0 var(--space-md);
+  padding-top: var(--space-sm);
+}
+
+.plan-banner-kicker {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.plan-banner-name {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+}
+
+.plan-banner-atrium {
+  border-top: 3px solid var(--gold);
+}
+
+.plan-banner-atrium .plan-banner-kicker {
+  color: var(--gold);
+}
+
+.plan-banner-atrium .plan-banner-name {
+  color: var(--ink);
+}
+
+.plan-banner-atelier {
+  border-top: 3px solid var(--pergaminho);
+  margin-bottom: var(--space-lg);
+}
+
+.plan-banner-atelier .plan-banner-kicker {
+  color: rgba(250, 237, 203, 0.75);
+}
+
+.plan-banner-atelier .plan-banner-name {
+  color: var(--pergaminho);
+}

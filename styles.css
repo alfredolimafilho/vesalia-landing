@@ -1363,3 +1363,186 @@ body > * {
     display: none;
   }
 }
+
+/* ============================================
+   PREÇO NO HERO + AÇÕES (v20260903-planos1)
+   ============================================ */
+.hero-price {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-top: var(--space-md);
+  max-width: 520px;
+}
+
+.hero-price strong {
+  font-weight: 600;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hero-cta-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: none;
+  padding: 14px 22px;
+}
+
+.hero-cta-primary:hover {
+  background: #1c1c1c;
+}
+
+/* ============================================
+   PLANOS
+   ============================================ */
+.plans {
+  padding: var(--space-xxl) var(--space-md);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg) var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--ink);
+}
+
+/* Atrium é a entrada — leva o fio de ouro da casa */
+.plan-atrium {
+  border-top: 3px solid var(--gold);
+}
+
+.plan-kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.plan-name {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.plan-price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.plan-price-main {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.plan-price-per {
+  font-size: 16px;
+  color: rgba(10, 10, 10, 0.55);
+}
+
+.plan-price-alt {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(10, 10, 10, 0.6);
+}
+
+.plan-terms {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(10, 10, 10, 0.75);
+}
+
+.plan-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.plan-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+}
+
+.plan-list li:last-child {
+  border-bottom: none;
+}
+
+.plan-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  width: fit-content;
+  transition: gap 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.plan-cta:hover {
+  gap: 18px;
+}
+
+.plan-cta-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: none;
+  padding: 14px 22px;
+}
+
+.plan-cta-primary:hover {
+  background: #1c1c1c;
+}
+
+.plan-footnote {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(10, 10, 10, 0.55);
+}
+
+@media (max-width: 768px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .plan-price-main {
+    font-size: 34px;
+  }
+}

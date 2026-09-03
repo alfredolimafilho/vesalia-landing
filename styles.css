@@ -2050,3 +2050,14 @@ body > * {
 .plan-banner-atelier .plan-banner-name {
   color: var(--pergaminho);
 }
+
+/* ============================================
+   VESA (v20260903-vesa1)
+   A IA voltou a se chamar Vesa; "Ask Vesa" é a ação. O avatar atual
+   ainda traz "Ask V." gravado na arte — até nascer o avatar do Vesa,
+   o zoom ancorado no alto esconde o rótulo fora do medalhão.
+   ============================================ */
+.askv-medal img {
+  transform: scale(1.34);
+  transform-origin: 50% 22%;
+}

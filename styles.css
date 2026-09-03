@@ -1727,43 +1727,9 @@ body > * {
   max-width: 62ch;
 }
 
-.hero-plate {
-  position: relative;
-  margin: 0;
-  justify-self: end;
-  width: 100%;
-  max-width: 380px;
-}
-
-.hero-plate img {
-  display: block;
-  width: 100%;
-  height: auto;
-  /* multiply casa a gravura com o creme do papel: sem isso o retângulo
-     branco do JPG aparece recortado sobre o fundo. */
-  mix-blend-mode: multiply;
-  filter: contrast(1.04);
-}
-
-.hero-plate figcaption {
-  margin-top: var(--space-sm);
-  padding-top: var(--space-xs);
-  border-top: 1px solid var(--hairline);
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-@media (max-width: 900px) {
-  .hero-body { grid-template-columns: 1fr; gap: var(--space-md); }
-  .hero-plate { display: none; }
-}
-
-/* A gravura era marca d'água aqui; virou peça do hero. Deixar as duas seria
-   repetir a mesma imagem na mesma rolagem. */
+/* A gravura anatômica saiu do hero (pedido do Alfredo, 03/09) — a capa é da
+   marca. A marca d'água genérica do .manifesto continua desligada: o § 01
+   agora tem o RETRATO do Vesalius como figura de verdade (.portrait). */
 .manifesto::before { content: none; }
 
 /* ---------- Respiro: 192px entre seções era vão, não pausa ---------- */
@@ -1775,3 +1741,179 @@ body > * {
 .waitlist { padding-top: clamp(84px, 11vw, 140px); padding-bottom: clamp(84px, 11vw, 140px); }
 
 .askv { padding-top: clamp(84px, 11vw, 140px); padding-bottom: clamp(84px, 11vw, 140px); }
+
+/* ============================================
+   CAPA ESCURA (v20260903-capa3)
+   Pedido do Alfredo: trabalhar o azul profundo da paleta, logo em
+   evidência, capa de entrada de verdade. Pergaminho SÓ sobre o azul.
+   ============================================ */
+.hero {
+  max-width: none;
+  margin: 0;
+  background: var(--navy);
+  /* full-bleed com conteúdo alinhado à coluna das outras seções */
+  padding-left: max(var(--space-md), calc((100vw - var(--max-wide)) / 2 + var(--space-md)));
+  padding-right: max(var(--space-md), calc((100vw - var(--max-wide)) / 2 + var(--space-md)));
+}
+
+.hero-logo {
+  width: clamp(240px, 30vw, 400px);
+}
+
+.hero .tagline {
+  color: var(--paper);
+}
+
+.hero .lede {
+  color: rgba(250, 250, 247, 0.88);
+}
+
+.hero .hero-description {
+  color: rgba(250, 250, 247, 0.68);
+}
+
+.hero .hero-price {
+  color: rgba(250, 250, 247, 0.88);
+}
+
+.hero .hero-price strong {
+  color: var(--pergaminho);
+}
+
+.hero .hero-cta {
+  color: var(--paper);
+  border-bottom-color: var(--paper);
+}
+
+.hero .hero-cta-primary {
+  background: var(--pergaminho);
+  color: var(--navy);
+  border-bottom: none;
+  font-weight: 600;
+}
+
+.hero .hero-cta-primary:hover {
+  background: #f3e2b4;
+}
+
+/* A faixa de prova cola na capa — mesmo azul, separada por um fio de
+   pergaminho. Juntas, elas SÃO a capa: marca, promessa, preço e fatos. */
+.proof {
+  border-top: 1px solid var(--hairline-on-navy);
+}
+
+/* ============================================
+   § 01 — RETRATO DO VESALIUS
+   ============================================ */
+.manifesto-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.portrait {
+  margin: 0;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* multiply casa o papel da xilogravura com o creme do fundo */
+  mix-blend-mode: multiply;
+  filter: contrast(1.04);
+}
+
+.portrait figcaption {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .manifesto-body { grid-template-columns: 1fr; }
+  .portrait { max-width: 260px; }
+}
+
+/* ============================================
+   O DEGRAU — a virada Atrium → Atelier
+   ============================================ */
+.step {
+  width: 100%;
+  background: var(--navy-deep);
+  color: var(--paper);
+  padding: clamp(72px, 10vw, 140px) var(--space-md);
+}
+
+.step-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.step .section-meta {
+  border-bottom-color: var(--hairline-on-navy);
+}
+
+.step .meta-label,
+.step .meta-title {
+  color: rgba(250, 237, 203, 0.62);
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(36px, 5.5vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  margin-bottom: var(--space-md);
+  font-variation-settings: "opsz" 144;
+}
+
+.step-text {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(20px, 2.2vw, 27px);
+  line-height: 1.5;
+  color: rgba(250, 250, 247, 0.82);
+  max-width: 680px;
+  margin-bottom: var(--space-md);
+}
+
+.step-name {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pergaminho);
+  margin-bottom: var(--space-lg);
+}
+
+.step-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pergaminho);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--pergaminho);
+  width: fit-content;
+  transition: gap 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.step-cta:hover {
+  gap: 18px;
+}

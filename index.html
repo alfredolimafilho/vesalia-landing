@@ -25,7 +25,7 @@
        HTML é DYNAMIC (nunca cacheado). Sem a versão na URL, uma mudança de CSS
        só aparece horas depois — e nesse meio-tempo a página vai ao ar com o
        HTML novo e o estilo velho. Bump a cada alteração de estilo/script. -->
-  <link rel="stylesheet" href="/styles.css?v=20260903-marca2">
+  <link rel="stylesheet" href="/styles.css?v=20260903-capa3">
 </head>
 <body>
 
@@ -63,21 +63,22 @@
   <!-- ============================================ -->
   <!-- HERO -->
   <!-- ============================================ -->
+  <!-- A capa é a chapa escura da casa: azul anatômico #1A2B3F com a marca em
+       pergaminho — a regra da paleta (pergaminho SÓ sobre o azul profundo) é
+       exatamente o desenho desta dobra. A gravura anatômica saiu daqui a
+       pedido do Alfredo (03/09): a capa é da MARCA, não da imagem; o retrato
+       do Vesalius entra no § 01, onde ele é citado. -->
   <section class="hero">
     <header class="hero-header">
       <!-- Um arquivo só: o logotipo oficial já traz letra, régua e descritor.
-           A régua montada à mão em <span> que existia aqui nunca bateu com a
-           do arquivo — espaçamento e traço são desenho, não CSS. -->
+           Versão offwhite TRANSPARENTE — a "pergamino" tem fundo chapado e
+           vira uma caixa bege sobre o azul. -->
       <div class="hero-mark">
-        <img class="hero-logo" src="/assets/vesalia-logo-black.png"
-             alt="Vesalia — Clinical Operations" width="900" height="450" fetchpriority="high">
+        <img class="hero-logo" src="/assets/vesalia-logo-offwhite.png"
+             alt="Vesalia — Clinical Operations" width="2400" height="1200" fetchpriority="high">
       </div>
     </header>
 
-    <!-- A gravura saiu da marca d'água do § 01 e veio pra cá. Lá ela era um
-         cinza de 30% atrás do texto, que ninguém via; aqui ela é metade da
-         composição e resolve o vazio da direita — que era o "sem graça" do
-         hero. A atribuição Wellcome/CC BY continua no rodapé. -->
     <div class="hero-body">
       <div class="hero-copy">
         <h1 class="tagline">A clínica<br>em ordem.</h1>
@@ -85,11 +86,6 @@
         <p class="hero-description">A Vesalia é a infraestrutura operacional da clínica: o prontuário se escreve com você por voz, a receita sai com base de medicamentos e assinatura digital, o financeiro fecha a conta, e a IA atende quem chega. Construída dentro de uma clínica cirúrgica. Aberta a qualquer especialidade.</p>
         <p class="hero-price">Vesalia Atrium — <strong>R$ 890/mês</strong>, profissionais ilimitados, sem carência. Você cria a clínica hoje e entra hoje.</p>
       </div>
-
-      <figure class="hero-plate" aria-hidden="true">
-        <img src="/assets/vesalius-fabrica.jpg" alt="" width="800" height="1200" fetchpriority="high" decoding="async">
-        <figcaption>De humani corporis fabrica · 1543</figcaption>
-      </figure>
     </div>
 
     <div class="hero-actions">
@@ -141,9 +137,20 @@
       <span class="meta-title">Princípio</span>
     </div>
 
-    <div class="prose reveal">
-      <p>Em 1543, Andreas Vesalius refundou a anatomia moderna. Não com nova teoria — com nova observação. Dissecou, desenhou, conferiu, e corrigiu treze séculos de erro herdado de Galeno.</p>
-      <p>A Vesalia aplica o mesmo rigor à operação de clínicas. Sem promessa milagrosa: o que está nesta página é o que o sistema faz. Preto no branco.</p>
+    <div class="manifesto-body">
+      <div class="prose reveal">
+        <p>Em 1543, Andreas Vesalius refundou a anatomia moderna. Não com nova teoria — com nova observação. Dissecou, desenhou, conferiu, e corrigiu treze séculos de erro herdado de Galeno.</p>
+        <p>A Vesalia aplica o mesmo rigor à operação de clínicas. Sem promessa milagrosa: o que está nesta página é o que o sistema faz. Preto no branco.</p>
+      </div>
+
+      <!-- O retrato mora onde o nome é citado — pedido do Alfredo (03/09).
+           Xilogravura da própria Fabrica, domínio público (Wikimedia). -->
+      <figure class="portrait reveal">
+        <img src="/assets/vesalius-retrato.jpg"
+             alt="Andreas Vesalius — retrato em xilogravura da De humani corporis fabrica, 1543"
+             width="736" height="1022" loading="lazy" decoding="async">
+        <figcaption>Andreas Vesalius · De humani corporis fabrica · 1543</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -195,11 +202,35 @@
   </section>
 
   <!-- ============================================ -->
+  <!-- O DEGRAU — a virada Atrium → Atelier -->
+  <!-- ============================================ -->
+  <!-- Pedido do Alfredo (03/09): faltava o impacto da mudança — Atrium e
+       Atelier liam como a mesma coisa dita duas vezes. Esta chapa escura é
+       a virada retórica: "fechou o consultório? o degrau acima existe". -->
+  <section class="step" id="degrau">
+    <div class="step-inner">
+      <div class="section-meta reveal">
+        <span class="meta-label">§ 03</span>
+        <span class="meta-title">O degrau</span>
+      </div>
+
+      <h2 class="step-title reveal">Quer subir o nível da gestão?</h2>
+      <p class="step-text reveal">O Atrium põe o consultório em ordem — e pode ser tudo de que você precisa. Mas quando a clínica quiser captar, vender, acompanhar o pós-operatório e fechar o financeiro no centavo, existe o degrau acima.</p>
+      <p class="step-name reveal">Vesalia Atelier — a operação inteira, com implantação assistida.</p>
+
+      <a href="#atelier" class="step-cta reveal">
+        <span>Conhecer o Atelier</span>
+        <span class="arrow">↓</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
   <!-- A CLÍNICA COMPLETA — o Atelier -->
   <!-- ============================================ -->
   <section class="coverage" id="atelier">
     <div class="section-meta reveal">
-      <span class="meta-label">§ 03</span>
+      <span class="meta-label">§ 04</span>
       <span class="meta-title">A clínica completa</span>
     </div>
 
@@ -245,7 +276,7 @@
   <!-- ============================================ -->
   <section class="askv" id="ask-v">
     <div class="section-meta reveal">
-      <span class="meta-label">§ 04</span>
+      <span class="meta-label">§ 05</span>
       <span class="meta-title">Ask V</span>
     </div>
 
@@ -298,7 +329,7 @@
   <!-- ============================================ -->
   <section class="manifesto" id="soberania">
     <div class="section-meta reveal">
-      <span class="meta-label">§ 05</span>
+      <span class="meta-label">§ 06</span>
       <span class="meta-title">Soberania</span>
     </div>
 
@@ -313,7 +344,7 @@
   <!-- ============================================ -->
   <section class="plans" id="planos">
     <div class="section-meta reveal">
-      <span class="meta-label">§ 06</span>
+      <span class="meta-label">§ 07</span>
       <span class="meta-title">Planos</span>
     </div>
 
@@ -385,7 +416,7 @@
   <!-- ============================================ -->
   <section class="faq">
     <div class="section-meta reveal">
-      <span class="meta-label">§ 07</span>
+      <span class="meta-label">§ 08</span>
       <span class="meta-title">Objeções</span>
     </div>
 
@@ -437,7 +468,7 @@
   <!-- ============================================ -->
   <section class="waitlist" id="contato">
     <div class="section-meta reveal">
-      <span class="meta-label">§ 08</span>
+      <span class="meta-label">§ 09</span>
       <span class="meta-title">Conversa</span>
     </div>
 

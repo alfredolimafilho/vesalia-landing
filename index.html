@@ -25,7 +25,7 @@
        HTML é DYNAMIC (nunca cacheado). Sem a versão na URL, uma mudança de CSS
        só aparece horas depois — e nesse meio-tempo a página vai ao ar com o
        HTML novo e o estilo velho. Bump a cada alteração de estilo/script. -->
-  <link rel="stylesheet" href="/styles.css?v=20260903-capa4">
+  <link rel="stylesheet" href="/styles.css?v=20260903-capa5">
 </head>
 <body>
 
@@ -63,45 +63,25 @@
   <!-- ============================================ -->
   <!-- HERO -->
   <!-- ============================================ -->
-  <!-- A capa é a chapa escura da casa: azul anatômico #1A2B3F com a marca em
-       pergaminho — a regra da paleta (pergaminho SÓ sobre o azul profundo) é
-       exatamente o desenho desta dobra. A gravura anatômica saiu daqui a
-       pedido do Alfredo (03/09): a capa é da MARCA, não da imagem; o retrato
-       do Vesalius entra no § 01, onde ele é citado. -->
+  <!-- A capa é o BANNER da marca (pedido do Alfredo, 03/09): o fundo azul
+       texturizado com o TEATRO ANATÔMICO — a mesma arte dos meetings da
+       casa, com o logotipo já composto na imagem. O conteúdo assenta
+       embaixo, à esquerda, sem competir com a marca. A capa NÃO vende o
+       Atrium: ela apresenta a casa; os planos são capítulo próprio. -->
   <section class="hero">
     <header class="hero-header">
-      <!-- Um arquivo só: o logotipo oficial já traz letra, régua e descritor.
-           Versão offwhite TRANSPARENTE — a "pergamino" tem fundo chapado e
-           vira uma caixa bege sobre o azul. -->
       <div class="hero-mark">
         <img class="hero-logo" src="/assets/vesalia-logo-offwhite.png"
              alt="Vesalia — Clinical Operations" width="2400" height="1200" fetchpriority="high">
       </div>
     </header>
 
-    <!-- Feedback do Alfredo (03/09): a capa apresenta TUDO que a casa oferece
-         — por tópicos, não por parágrafo ("nem todo mundo lê texto"). O lado
-         direito, que estava vazio, carrega a grade da plataforma inteira. -->
     <div class="hero-body">
       <div class="hero-copy">
         <h1 class="tagline">A clínica<br>em ordem.</h1>
-        <p class="lede">Agenda, prontuário, receituário, financeiro e atendimento — num sistema só.</p>
-        <p class="hero-description">A infraestrutura operacional da clínica. Construída dentro de uma clínica cirúrgica, aberta a qualquer especialidade.</p>
-        <p class="hero-price">Vesalia Atrium — <strong>R$ 890/mês</strong>, profissionais ilimitados, sem carência. Você cria a clínica hoje e entra hoje — depois, quando configurada, importamos o seu backup do sistema atual.</p>
+        <p class="lede">Da captação ao pós-operatório: agenda, prontuário, receituário, financeiro, CRM e IA — num sistema só.</p>
+        <p class="hero-description">Construída dentro de uma clínica cirúrgica. Aberta a qualquer especialidade.</p>
       </div>
-
-      <ul class="hero-topics" aria-label="O que a Vesalia oferece">
-        <li>Prontuário com evolução por voz</li>
-        <li>Receituário CMED · assinatura ICP-Brasil</li>
-        <li>Agenda multi-profissional + teleconsulta</li>
-        <li>CRM conversacional integrado</li>
-        <li>IA qualifica e atende quem chega, 24/7</li>
-        <li>Ask V — copiloto de IA no WhatsApp</li>
-        <li>Financeiro completo, até conciliação e DRE</li>
-        <li>Portal da paciente + pós-operatório</li>
-        <li>Orçamentos, comissões e estoque</li>
-        <li>Exportação total dos dados — sem lock-in</li>
-      </ul>
     </div>
 
     <div class="hero-actions">
@@ -109,38 +89,31 @@
         <span>Criar minha clínica</span>
         <span class="arrow">→</span>
       </a>
-      <a href="#dia" class="hero-cta">
-        <span>Ver o que está incluído</span>
+      <a href="#planos" class="hero-cta">
+        <span>Ver planos</span>
         <span class="arrow">↓</span>
       </a>
     </div>
   </section>
 
   <!-- ============================================ -->
-  <!-- FAIXA DE PROVA — o primeiro contraste da página -->
+  <!-- A PLATAFORMA EM TÓPICOS — primeira rolagem, visual -->
   <!-- ============================================ -->
-  <!-- A página inteira era creme sobre creme: bonita e monótona, sem nada que
-       segurasse o olho entre uma seção e outra. Esta faixa em azul anatômico é
-       a primeira quebra, e ela carrega fato, não adjetivo — cada número já
-       estava escrito em prosa mais abaixo. -->
+  <!-- "Nem todo mundo lê texto": tudo que a casa oferece, em itens curtos,
+       logo abaixo da capa. O preço NÃO mora aqui (pedido do Alfredo, 03/09:
+       a primeira página apresenta a empresa inteira; plano vem depois). -->
   <section class="proof" id="prova">
-    <ul class="proof-list">
-      <li class="proof-item">
-        <span class="proof-figure">R$ 890</span>
-        <span class="proof-label">por mês, o consultório inteiro</span>
-      </li>
-      <li class="proof-item">
-        <span class="proof-figure">Ilimitados</span>
-        <span class="proof-label">profissionais e usuários, em qualquer plano</span>
-      </li>
-      <li class="proof-item">
-        <span class="proof-figure">Hoje</span>
-        <span class="proof-label">criou a conta, entrou — sem carência</span>
-      </li>
-      <li class="proof-item">
-        <span class="proof-figure">Zero</span>
-        <span class="proof-label">custo pra exportar tudo e sair</span>
-      </li>
+    <ul class="proof-topics">
+      <li>Prontuário com evolução por voz</li>
+      <li>Receituário CMED · assinatura ICP-Brasil</li>
+      <li>Agenda multi-profissional + teleconsulta</li>
+      <li>CRM conversacional integrado</li>
+      <li>IA qualifica e atende quem chega, 24/7</li>
+      <li>Ask V — copiloto de IA no WhatsApp</li>
+      <li>Financeiro completo, até conciliação e DRE</li>
+      <li>Portal da paciente + pós-operatório</li>
+      <li>Orçamentos, comissões e estoque</li>
+      <li>Profissionais ilimitados · sem lock-in</li>
     </ul>
   </section>
 

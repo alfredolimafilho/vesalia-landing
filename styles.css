@@ -2061,3 +2061,31 @@ body > * {
   transform: scale(1.34);
   transform-origin: 50% 22%;
 }
+
+/* Soberania como faixa horizontal compacta (pedido 03/09: falar sem dar
+   palco de seção inteira com vazio do lado). */
+.coverage-compact {
+  padding-top: clamp(56px, 7vw, 88px);
+  padding-bottom: clamp(56px, 7vw, 88px);
+}
+
+.coverage-compact .coverage-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 860px) {
+  .coverage-compact .coverage-grid { grid-template-columns: 1fr; }
+}
+
+/* Subtítulo do convite final ("Vamos iniciar?") */
+.waitlist-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: var(--space-sm);
+  font-variation-settings: "opsz" 144;
+}

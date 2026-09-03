@@ -25,7 +25,7 @@
        HTML é DYNAMIC (nunca cacheado). Sem a versão na URL, uma mudança de CSS
        só aparece horas depois — e nesse meio-tempo a página vai ao ar com o
        HTML novo e o estilo velho. Bump a cada alteração de estilo/script. -->
-  <link rel="stylesheet" href="/styles.css?v=20260903-vesa1">
+  <link rel="stylesheet" href="/styles.css?v=20260903-vesa2">
 </head>
 <body>
 
@@ -115,7 +115,7 @@
       <li>IA de atendimento automático (opcional)</li>
       <li>Vesa — copiloto de IA no WhatsApp</li>
       <li>Financeiro completo, até conciliação e DRE</li>
-      <li>Portal da paciente + pós-operatório</li>
+      <li>Portal da paciente + Monitor pós-operatório</li>
       <li>Orçamentos e precificação</li>
       <li>Comissões, repasses e estoque</li>
       <li>Profissionais ilimitados · sem lock-in</li>
@@ -334,15 +334,27 @@
   <!-- ============================================ -->
   <!-- SOBERANIA & SEGURANÇA -->
   <!-- ============================================ -->
-  <section class="manifesto" id="soberania">
+  <!-- Pedido do Alfredo (03/09): tem que ser dito, mas sem o palco de seção
+       inteira com vazio ao lado — virou faixa horizontal compacta. -->
+  <section class="coverage coverage-compact" id="soberania">
     <div class="section-meta reveal">
       <span class="meta-label">§ 06</span>
       <span class="meta-title">Soberania</span>
     </div>
 
-    <div class="prose reveal">
-      <p>Seus dados são seus. Exportação completa do prontuário em ZIP — fotos, contratos, receitas, exames e financeiro — sem custo, qualquer dia. Entrar na Vesalia não é ficar preso nela.</p>
-      <p>Cada foto clínica vive criptografada num cofre privado, sem link público; toda abertura gera URL temporária e registro de auditoria. Backup diário, 2FA, conformidade LGPD e CFM 1.821/2007 — por padrão, não por configuração.</p>
+    <div class="coverage-grid stagger-children">
+      <div class="category">
+        <h4 class="category-title">Seus dados são seus</h4>
+        <p class="category-modules">Exportação completa do prontuário em ZIP — fotos, contratos, receitas, exames e financeiro. Sem custo, qualquer dia. Entrar na Vesalia não é ficar preso nela.</p>
+      </div>
+      <div class="category">
+        <h4 class="category-title">Cofre de fotos</h4>
+        <p class="category-modules">Cada foto clínica criptografada, sem link público. Toda abertura gera URL temporária e registro de auditoria: quem abriu, quando, de onde.</p>
+      </div>
+      <div class="category">
+        <h4 class="category-title">Seguro por padrão</h4>
+        <p class="category-modules">Backup diário, 2FA, conformidade LGPD e CFM 1.821/2007 — por padrão, não por configuração.</p>
+      </div>
     </div>
   </section>
 
@@ -377,7 +389,7 @@
           <li>Fotos clínicas no cofre, sem compressão</li>
           <li>Orçamentos com PDF protegido</li>
           <li>Financeiro essencial: contas e fluxo de caixa</li>
-          <li>Anamnese online por link, sem app</li>
+          <li>Anamnese preenchida pela paciente de casa, antes da consulta</li>
           <li>Profissionais e usuários ilimitados</li>
           <li>Exportação completa dos dados</li>
         </ul>
@@ -406,11 +418,11 @@
           <li>Funil de vendas e follow-up automatizado</li>
           <li>Financeiro profundo: conciliação, DRE, notas</li>
           <li>Procedimentos, comissões e repasses</li>
-          <li>Portal da paciente + pós-op com check-ins</li>
+          <li>Portal da paciente + Monitor pós-operatório</li>
           <li>Estoque e marketing</li>
         </ul>
         <a href="#contato" class="plan-cta">
-          <span>Agendar implantação</span>
+          <span>Agendar apresentação</span>
           <span class="arrow">↓</span>
         </a>
         <p class="plan-footnote">Começa por uma conversa sobre a sua operação. Primeiro mês de mensalidade em carência durante a implantação.</p>
@@ -435,7 +447,7 @@
 
       <div class="faq-item">
         <dt class="faq-question">“Já tenho sistema de prontuário.”</dt>
-        <dd class="faq-answer">Então compare fato a fato: o seu escreve a evolução por voz? Tem base CMED com receita de controle especial em duas vias? Assina com ICP-Brasil? Lança o financeiro onde o atendimento acontece? Se a resposta for sim quatro vezes, fique onde está — é honesto dizer isso.</dd>
+        <dd class="faq-answer">Se o seu sistema tem <a href="#dia">todas as funcionalidades do Vesalia Atrium</a>, fique onde está — é honesto dizer isso.</dd>
       </div>
 
       <div class="faq-item">
@@ -445,7 +457,7 @@
 
       <div class="faq-item">
         <dt class="faq-question">“Como eu entro? Tem fidelidade?”</dt>
-        <dd class="faq-answer">No Atrium: cartão de crédito, e a clínica nasce em minutos no seu endereço próprio. O plano mensal não tem fidelidade — cancela quando quiser. O anual tem compromisso de 12 meses: é ele que barateia a mensalidade. No Atelier, o primeiro mês fica em carência enquanto fazemos a implantação juntos.</dd>
+        <dd class="faq-answer">No Atrium: cartão de crédito, e a clínica nasce em minutos no seu endereço próprio. No Atelier, o primeiro mês fica em carência enquanto fazemos a implantação juntos. Plano mensal não tem fidelidade em nenhum dos dois — apenas os planos anuais, com compromisso de 12 meses, que é o que barateia a mensalidade.</dd>
       </div>
 
       <div class="faq-item">
@@ -491,6 +503,7 @@
         </div>
       </figure>
       <div class="waitlist-intro-copy">
+        <h2 class="waitlist-title">Vamos iniciar?</h2>
         <p>O Atrium você cria sozinho, agora. O Atelier começa por uma conversa sobre a sua operação — apresente a clínica abaixo e retornamos em poucos dias com a leitura. Em alguns casos, dizemos que não fazemos sentido pra você.</p>
       </div>
     </div>

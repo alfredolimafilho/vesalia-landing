@@ -218,11 +218,17 @@ $("form3").addEventListener("submit", async (e) => {
     return;
   }
 
+  if (!$("aceite").checked) {
+    mostrarErro("Pra continuar, leia e aceite o Contrato de Assinatura e os Termos de Uso.");
+    return;
+  }
+
   const btn = $("btnPagar");
   btn.disabled = true;
   btn.querySelector("span:first-child").textContent = "Processando…";
 
   const payload = {
+    aceite: true,
     clinica: {
       nome: $("nomeClinica").value.trim(),
       slug: $("slug").value.trim(),

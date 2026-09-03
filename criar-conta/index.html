@@ -120,6 +120,17 @@
     }
     .submit { flex: 1; }
 
+    .aceite-row {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-family: var(--font-sans); font-size: 13px; line-height: 1.55;
+      color: rgba(10,10,10,0.8); margin-top: var(--space-sm); cursor: pointer;
+    }
+    .aceite-row input {
+      margin-top: 3px; width: 15px; height: 15px; accent-color: var(--navy);
+      flex-shrink: 0; cursor: pointer;
+    }
+    .aceite-row a { color: var(--ink); }
+
     .signup-error {
       display: none;
       font-family: var(--font-sans); font-size: 13px; line-height: 1.5;
@@ -316,6 +327,13 @@
           </div>
 
           <p class="price-line" id="resumoFinal"></p>
+
+          <!-- O contrato entra na rota ANTES de liberar (03/09): o servidor
+               recusa o cadastro sem este aceite, e grava versão/IP/hora. -->
+          <label class="aceite-row">
+            <input type="checkbox" id="aceite" required>
+            <span>Li e aceito o <a href="/legal/contrato-atrium" target="_blank" rel="noopener">Contrato de Assinatura do Vesalia Atrium</a> e os <a href="/legal/termos" target="_blank" rel="noopener">Termos de Uso</a>.</span>
+          </label>
 
           <div class="step-actions">
             <button type="button" class="back-btn" data-back="2">← Voltar</button>

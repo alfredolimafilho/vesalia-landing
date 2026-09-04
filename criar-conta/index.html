@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criar minha clínica | Vesalia</title>
-  <meta name="description" content="Crie sua clínica na Vesalia. O cadastro automático está sendo finalizado — deixe seus dados e você entra entre os primeiros.">
+  <meta name="description" content="Crie sua clínica na Vesalia Atrium: cartão de crédito e a clínica no ar em minutos, no seu endereço próprio. Profissionais ilimitados, sem carência.">
   <meta name="theme-color" content="#1A2B3F">
-  <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml" href="/assets/vesalia-simbolo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v=20260903-vesa2">
   <style>
-    /* Página interina do /criar-conta: o cadastro automático (cartão →
-       clínica no ar em minutos) está em construção no app. Até ele subir,
-       esta página captura a intenção com o MESMO formulário/endpoint da
-       home — o lead cai no CRM do superadm marcado como "criar clínica".
-       Quando o fluxo real for ao ar, esta pasta é substituída. */
+    /* /criar-conta REAL — o fluxo "passou cartão, recebeu credencial".
+       Três passos contra as rotas públicas do app (signupPublico.ts):
+       1. a clínica e você (e-mail com código de verificação, endereço próprio)
+       2. o plano (mensal/anual) e o cupom
+       3. o cartão — cobrança síncrona; aprovou, a clínica nasce e o
+          redirect entra pelo token de uso único no subdomínio novo. */
     .signup-shell {
       min-height: 100vh;
       background: var(--navy);
@@ -26,13 +26,13 @@
       align-items: center;
       padding: var(--space-lg) var(--space-md);
     }
-    .signup-logo { width: clamp(200px, 24vw, 300px); height: auto; margin-bottom: var(--space-lg); }
+    .signup-logo { width: clamp(180px, 22vw, 260px); height: auto; margin-bottom: var(--space-md); }
     .signup-card {
       width: 100%;
-      max-width: 640px;
+      max-width: 680px;
       background: var(--paper);
       border-radius: 4px;
-      padding: clamp(28px, 5vw, 56px);
+      padding: clamp(28px, 5vw, 52px);
     }
     .signup-kicker {
       font-family: var(--font-sans);
@@ -45,21 +45,123 @@
       font-weight: 300;
       font-size: clamp(30px, 5vw, 44px);
       line-height: 1.05; letter-spacing: -0.02em;
-      margin: 10px 0 14px;
+      margin: 10px 0 6px;
       color: var(--ink);
     }
-    .signup-copy {
+    .signup-sub {
       font-family: var(--font-sans);
-      font-size: 14.5px; line-height: 1.65;
-      color: rgba(10, 10, 10, 0.75);
+      font-size: 13.5px; line-height: 1.6;
+      color: rgba(10, 10, 10, 0.65);
       margin-bottom: var(--space-md);
     }
+    /* Progresso 1 · 2 · 3 */
+    .steps-nav {
+      display: flex; gap: 10px; margin-bottom: var(--space-md);
+      font-family: var(--font-sans); font-size: 11px;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .steps-nav span {
+      padding-bottom: 6px; border-bottom: 2px solid rgba(10,10,10,0.12);
+      color: rgba(10,10,10,0.4); flex: 1;
+    }
+    .steps-nav span.is-active { border-color: var(--gold); color: var(--ink); font-weight: 600; }
+    .steps-nav span.is-done { border-color: var(--ink); color: var(--ink); }
+
+    .sg-step { display: none; }
+    .sg-step.is-visible { display: block; }
+
+    .field-hint {
+      font-family: var(--font-sans); font-size: 12px; line-height: 1.5;
+      color: rgba(10,10,10,0.55); margin-top: 6px;
+    }
+    .field-hint.ok { color: #2f7d4f; }
+    .field-hint.err { color: #b3372f; }
+
+    /* Endereço próprio: prefixo editável + domínio fixo */
+    .slug-row { display: flex; align-items: center; gap: 8px; }
+    .slug-row input { flex: 1; }
+    .slug-domain { font-family: var(--font-sans); font-size: 13px; color: rgba(10,10,10,0.6); white-space: nowrap; }
+
+    .inline-btn {
+      font-family: var(--font-sans); font-size: 11.5px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: none; border: 1px solid var(--ink); border-radius: 3px;
+      color: var(--ink); padding: 10px 14px; cursor: pointer; white-space: nowrap;
+    }
+    .inline-btn:disabled { opacity: 0.45; cursor: default; }
+    .email-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+
+    /* Plano: dois cartões-rádio */
+    .plan-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: var(--space-sm) 0; }
+    .plan-pick label {
+      border: 1px solid rgba(10,10,10,0.25); border-radius: 4px;
+      padding: 16px; cursor: pointer; display: block;
+    }
+    .plan-pick input { position: absolute; opacity: 0; }
+    .plan-pick label.is-picked { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+    .plan-pick .pp-name { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(10,10,10,0.6); }
+    .plan-pick .pp-price { font-family: var(--font-serif); font-weight: 300; font-size: 26px; margin: 6px 0 2px; color: var(--ink); }
+    .plan-pick .pp-note { font-family: var(--font-sans); font-size: 12px; color: rgba(10,10,10,0.6); }
+
+    .price-line {
+      font-family: var(--font-sans); font-size: 14px; line-height: 1.6;
+      border-top: 1px solid rgba(10,10,10,0.15);
+      padding-top: var(--space-sm); margin-top: var(--space-sm);
+      color: var(--ink);
+    }
+    .price-line strong { font-size: 18px; }
+    .price-old { text-decoration: line-through; color: rgba(10,10,10,0.45); margin-right: 6px; }
+
+    .step-actions { display: flex; gap: 12px; align-items: center; margin-top: var(--space-md); }
+    .back-btn {
+      font-family: var(--font-sans); font-size: 11.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; background: none; border: none;
+      color: rgba(10,10,10,0.55); cursor: pointer; padding: 10px 0;
+    }
+    .submit { flex: 1; }
+
+    .aceite-row {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-family: var(--font-sans); font-size: 13px; line-height: 1.55;
+      color: rgba(10,10,10,0.8); margin-top: var(--space-sm); cursor: pointer;
+    }
+    .aceite-row input {
+      margin-top: 3px; width: 15px; height: 15px; accent-color: var(--navy);
+      flex-shrink: 0; cursor: pointer;
+    }
+    .aceite-row a { color: var(--ink); }
+
+    .signup-error {
+      display: none;
+      font-family: var(--font-sans); font-size: 13px; line-height: 1.5;
+      background: #fdf0ef; border: 1px solid #e8b8b3; border-radius: 4px;
+      color: #8f2c25; padding: 12px 14px; margin-top: var(--space-sm);
+    }
+    .signup-error.is-visible { display: block; }
+
     .signup-back {
       margin-top: var(--space-md);
       font-family: var(--font-sans);
       font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
     }
     .signup-back a { color: rgba(250, 250, 247, 0.75); text-decoration: none; border-bottom: 1px solid rgba(250, 250, 247, 0.35); padding-bottom: 3px; }
+
+    /* Estado final: criando a clínica */
+    .creating {
+      text-align: center; padding: var(--space-lg) 0;
+      font-family: var(--font-serif); font-size: 22px; color: var(--ink);
+    }
+    .creating .spin {
+      display: inline-block; width: 22px; height: 22px; margin-bottom: 14px;
+      border: 2px solid rgba(10,10,10,0.2); border-top-color: var(--ink);
+      border-radius: 50%; animation: sp 0.9s linear infinite;
+    }
+    @keyframes sp { to { transform: rotate(360deg); } }
+
+    @media (max-width: 560px) {
+      .plan-pick { grid-template-columns: 1fr; }
+      .email-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -69,75 +171,191 @@
     </a>
 
     <div class="signup-card">
-      <span class="signup-kicker">Vesalia Atrium · R$ 890/mês</span>
+      <span class="signup-kicker">Vesalia Atrium</span>
       <h1 class="signup-title">Criar minha clínica</h1>
-      <p class="signup-copy">
-        O cadastro automático — cartão, e a clínica no ar em minutos, no seu
-        endereço próprio — está em fase final de construção. Deixe seus dados:
-        avisamos assim que abrir, e você entra entre os primeiros.
-      </p>
+      <p class="signup-sub">Sem carência: aprovou o cartão, a clínica está no ar — no seu endereço próprio, com profissionais ilimitados.</p>
 
-      <form class="form" id="waitlist-form" novalidate>
-        <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden">
-          <label for="website">Não preencha este campo</label>
-          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-        </div>
+      <div class="steps-nav" aria-hidden="true">
+        <span id="tab1" class="is-active">1 · A clínica</span>
+        <span id="tab2">2 · O plano</span>
+        <span id="tab3">3 · Pagamento</span>
+      </div>
 
-        <!-- Marca a origem: o lead chega no CRM já dizendo o que quer. -->
-        <input type="hidden" name="mensagem" value="Quero criar minha clínica (Atrium) — veio do /criar-conta">
+      <div class="signup-error" id="erro" role="alert"></div>
 
-        <div class="field">
-          <label for="nome">Nome completo</label>
-          <input type="text" id="nome" name="nome" required autocomplete="name">
-        </div>
-
-        <div class="field-row">
+      <!-- ── PASSO 1: a clínica e você ─────────────────────────────── -->
+      <section class="sg-step is-visible" id="step1">
+        <form class="form" id="form1" novalidate>
           <div class="field">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required autocomplete="email">
+            <label for="nomeClinica">Nome da clínica</label>
+            <input type="text" id="nomeClinica" required autocomplete="organization">
           </div>
+
           <div class="field">
-            <label for="whatsapp">WhatsApp</label>
-            <input type="tel" id="whatsapp" name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000">
+            <label for="slug">Endereço da clínica</label>
+            <div class="slug-row">
+              <input type="text" id="slug" required autocomplete="off" spellcheck="false" placeholder="suaclinica">
+              <span class="slug-domain">.vesalia.com.br</span>
+            </div>
+            <p class="field-hint" id="slugHint">Gerado a partir do nome — pode ajustar.</p>
           </div>
-        </div>
 
-        <div class="field">
-          <label for="clinica">Nome da clínica</label>
-          <input type="text" id="clinica" name="clinica" autocomplete="organization">
-        </div>
-
-        <div class="field-row">
           <div class="field">
             <label for="especialidade">Especialidade</label>
-            <select id="especialidade" name="especialidade" required>
+            <select id="especialidade" required>
               <option value="" disabled selected>Selecione</option>
-              <option value="Cirurgia Plástica">Cirurgia Plástica</option>
-              <option value="Dermatologia">Dermatologia</option>
-              <option value="Medicina Estética">Medicina Estética</option>
-              <option value="Ginecologia">Ginecologia</option>
-              <option value="Nutrologia">Nutrologia</option>
-              <option value="Outro">Outro</option>
+              <option>Cirurgia Plástica</option>
+              <option>Dermatologia</option>
+              <option>Medicina Estética</option>
+              <option>Ginecologia</option>
+              <option>Nutrologia</option>
+              <option>Outro</option>
             </select>
           </div>
+
           <div class="field">
-            <label for="cidade">Cidade</label>
-            <input type="text" id="cidade" name="cidade" required autocomplete="address-level2">
+            <label for="adminNome">Seu nome completo</label>
+            <input type="text" id="adminNome" required autocomplete="name">
           </div>
+
+          <div class="email-row">
+            <div class="field">
+              <label for="email">E-mail (será seu login)</label>
+              <input type="email" id="email" required autocomplete="email">
+            </div>
+            <button type="button" class="inline-btn" id="btnCodigo">Enviar código</button>
+          </div>
+          <p class="field-hint" id="emailHint"></p>
+
+          <div class="field">
+            <label for="codigo">Código de confirmação (6 dígitos, chega no e-mail)</label>
+            <input type="text" id="codigo" required inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="whatsapp">WhatsApp</label>
+              <input type="tel" id="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000">
+            </div>
+            <div class="field">
+              <label for="senha">Senha (mínimo 8 caracteres)</label>
+              <input type="password" id="senha" required minlength="8" autocomplete="new-password">
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button type="submit" class="submit"><span>Continuar</span><span class="arrow">→</span></button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ── PASSO 2: o plano ──────────────────────────────────────── -->
+      <section class="sg-step" id="step2">
+        <form class="form" id="form2" novalidate>
+          <div class="plan-pick" id="planPick">
+            <label for="pMensal" class="is-picked">
+              <input type="radio" name="periodicidade" id="pMensal" value="mensal" checked>
+              <span class="pp-name">Mensal</span>
+              <div class="pp-price">R$ 890<span style="font-size:14px">/mês</span></div>
+              <span class="pp-note">Sem fidelidade — cancela quando quiser.</span>
+            </label>
+            <label for="pAnual">
+              <input type="radio" name="periodicidade" id="pAnual" value="anual">
+              <span class="pp-name">Anual</span>
+              <div class="pp-price">12× R$ 801</div>
+              <span class="pp-note">Compromisso de 12 meses — a mensalidade cai.</span>
+            </label>
+          </div>
+
+          <div class="email-row">
+            <div class="field">
+              <label for="cupom">Cupom (se você tiver)</label>
+              <input type="text" id="cupom" autocomplete="off" spellcheck="false" style="text-transform:uppercase">
+            </div>
+            <button type="button" class="inline-btn" id="btnCupom">Aplicar</button>
+          </div>
+          <p class="field-hint" id="cupomHint"></p>
+
+          <p class="price-line" id="resumoPreco">Hoje, no cartão: <strong>R$ 890,00</strong> — e a clínica está no ar.</p>
+
+          <div class="step-actions">
+            <button type="button" class="back-btn" data-back="1">← Voltar</button>
+            <button type="submit" class="submit"><span>Continuar</span><span class="arrow">→</span></button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ── PASSO 3: pagamento ────────────────────────────────────── -->
+      <section class="sg-step" id="step3">
+        <form class="form" id="form3" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="cpfCnpj">CPF ou CNPJ do titular</label>
+              <input type="text" id="cpfCnpj" required inputmode="numeric" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="titularNome">Nome impresso no cartão</label>
+              <input type="text" id="titularNome" required autocomplete="cc-name">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="numeroCartao">Número do cartão</label>
+            <input type="text" id="numeroCartao" required inputmode="numeric" autocomplete="cc-number">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="validade">Validade (MM/AA)</label>
+              <input type="text" id="validade" required inputmode="numeric" placeholder="09/28" maxlength="5" autocomplete="cc-exp">
+            </div>
+            <div class="field">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" required inputmode="numeric" maxlength="4" autocomplete="cc-csc">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cep">CEP da cobrança</label>
+              <input type="text" id="cep" required inputmode="numeric" maxlength="9" autocomplete="postal-code">
+            </div>
+            <div class="field">
+              <label for="numeroEndereco">Número do endereço</label>
+              <input type="text" id="numeroEndereco" required autocomplete="off">
+            </div>
+          </div>
+
+          <p class="price-line" id="resumoFinal"></p>
+
+          <!-- O contrato entra na rota ANTES de liberar (03/09): o servidor
+               recusa o cadastro sem este aceite, e grava versão/IP/hora. -->
+          <label class="aceite-row">
+            <input type="checkbox" id="aceite" required>
+            <span>Li e aceito o <a href="/legal/contrato-atrium" target="_blank" rel="noopener">Contrato de Assinatura do Vesalia Atrium</a> e os <a href="/legal/termos" target="_blank" rel="noopener">Termos de Uso</a>.</span>
+          </label>
+
+          <div class="step-actions">
+            <button type="button" class="back-btn" data-back="2">← Voltar</button>
+            <button type="submit" class="submit" id="btnPagar"><span>Pagar e criar minha clínica</span><span class="arrow">→</span></button>
+          </div>
+          <p class="form-note">Cobrança segura via Asaas. Seus dados ficam apenas conosco — <a href="/legal/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+        </form>
+      </section>
+
+      <!-- ── Estado final ──────────────────────────────────────────── -->
+      <section class="sg-step" id="stepDone">
+        <div class="creating">
+          <span class="spin"></span><br>
+          Pagamento aprovado. Montando a sua clínica…<br>
+          <span style="font-size:14px;font-family:var(--font-sans);color:rgba(10,10,10,0.6)">Você entra sozinho em instantes.</span>
         </div>
-
-        <button type="submit" class="submit">
-          <span>Quero ser dos primeiros</span>
-          <span class="arrow">→</span>
-        </button>
-
-        <p class="form-note">Seus dados ficam apenas conosco. Ao enviar, você concorda com a nossa <a href="/legal/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
-      </form>
+      </section>
     </div>
 
     <p class="signup-back"><a href="/">← Voltar pra página inicial</a></p>
   </div>
 
-  <script src="/script.js?v=20260903-vesa2"></script>
+  <script src="/criar-conta/signup.js?v=20260903-real1"></script>
 </body>
 </html>

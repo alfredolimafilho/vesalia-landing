@@ -131,6 +131,23 @@
     }
     .aceite-row a { color: var(--ink); }
 
+    .pix-box { text-align: center; }
+    .pix-title { font-family: var(--font-serif); font-weight: 300; font-size: 24px; margin: 0 0 12px; }
+    .pix-qr { width: 240px; max-width: 80%; border: 1px solid rgba(10,10,10,0.15); border-radius: 4px; padding: 8px; background: #fff; }
+    .pix-valor { font-family: var(--font-sans); font-size: 15px; margin: 12px 0 20px; }
+    .pix-valor strong { font-size: 19px; }
+    .pix-copy-label {
+      display: block; text-align: left; font-family: var(--font-sans);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(10,10,10,0.55); margin-bottom: 4px;
+    }
+    .pix-box .email-row { text-align: left; }
+    .pix-status {
+      font-family: var(--font-sans); font-size: 14px; color: rgba(10,10,10,0.75);
+      margin-top: var(--space-sm); display: flex; gap: 10px; align-items: center; justify-content: center;
+    }
+    .pix-status .spin { margin-bottom: 0; flex-shrink: 0; }
+
     .signup-error {
       display: none;
       font-family: var(--font-sans); font-size: 13px; line-height: 1.5;
@@ -151,7 +168,7 @@
       text-align: center; padding: var(--space-lg) 0;
       font-family: var(--font-serif); font-size: 22px; color: var(--ink);
     }
-    .creating .spin {
+    .creating .spin, .pix-status .spin {
       display: inline-block; width: 22px; height: 22px; margin-bottom: 14px;
       border: 2px solid rgba(10,10,10,0.2); border-top-color: var(--ink);
       border-radius: 50%; animation: sp 0.9s linear infinite;
@@ -288,15 +305,27 @@
       <!-- ── PASSO 3: pagamento ────────────────────────────────────── -->
       <section class="sg-step" id="step3">
         <form class="form" id="form3" novalidate>
-          <div class="field-row">
-            <div class="field">
-              <label for="cpfCnpj">CPF ou CNPJ do titular</label>
-              <input type="text" id="cpfCnpj" required inputmode="numeric" autocomplete="off">
-            </div>
-            <div class="field">
-              <label for="titularNome">Nome impresso no cartão</label>
-              <input type="text" id="titularNome" required autocomplete="cc-name">
-            </div>
+          <!-- Cartão: cobra na hora. PIX: QR na tela, a clínica nasce quando o pagamento cai. -->
+          <div class="plan-pick" id="payPick">
+            <label class="is-picked"><input type="radio" name="metodo" id="mCartao" checked>
+              <span class="pp-name">Cartão de crédito</span>
+              <span class="pp-note" style="display:block;margin-top:6px">Aprovou, a clínica está no ar na hora.</span>
+            </label>
+            <label><input type="radio" name="metodo" id="mPix">
+              <span class="pp-name">PIX</span>
+              <span class="pp-note" style="display:block;margin-top:6px">QR na tela — pagou, a clínica nasce sozinha.</span>
+            </label>
+          </div>
+
+          <div class="field">
+            <label for="cpfCnpj">CPF ou CNPJ do titular</label>
+            <input type="text" id="cpfCnpj" required inputmode="numeric" autocomplete="off">
+          </div>
+
+          <div id="camposCartao">
+          <div class="field">
+            <label for="titularNome">Nome impresso no cartão</label>
+            <input type="text" id="titularNome" required autocomplete="cc-name">
           </div>
 
           <div class="field">
@@ -325,6 +354,7 @@
               <input type="text" id="numeroEndereco" required autocomplete="off">
             </div>
           </div>
+          </div><!-- /camposCartao -->
 
           <p class="price-line" id="resumoFinal"></p>
 
@@ -341,6 +371,23 @@
           </div>
           <p class="form-note">Cobrança segura via Asaas. Seus dados ficam apenas conosco — <a href="/legal/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
         </form>
+
+        <!-- Espera do PIX: aparece no lugar do formulário depois de gerar o QR. -->
+        <div class="pix-box" id="pixBox" hidden>
+          <p class="pix-title">Escaneie com o app do seu banco</p>
+          <img id="pixQr" alt="QR Code PIX" class="pix-qr">
+          <p class="pix-valor" id="pixValor"></p>
+          <label class="pix-copy-label" for="pixCola">Ou copie o código PIX:</label>
+          <div class="email-row">
+            <div class="field"><input type="text" id="pixCola" readonly></div>
+            <button type="button" class="inline-btn" id="btnPixCopiar">Copiar</button>
+          </div>
+          <p class="pix-status"><span class="spin"></span> Aguardando o pagamento… assim que cair, sua clínica nasce sozinha nesta tela.</p>
+          <p class="form-note">O QR vale por 1 hora. Nada foi cobrado ainda — só quando você pagar.</p>
+          <div class="step-actions">
+            <button type="button" class="back-btn" id="btnPixVoltar">← Voltar e mudar a forma de pagamento</button>
+          </div>
+        </div>
       </section>
 
       <!-- ── Estado final ──────────────────────────────────────────── -->
@@ -356,6 +403,6 @@
     <p class="signup-back"><a href="/">← Voltar pra página inicial</a></p>
   </div>
 
-  <script src="/criar-conta/signup.js?v=20260903-real1"></script>
+  <script src="/criar-conta/signup.js?v=20260904-pix1"></script>
 </body>
 </html>

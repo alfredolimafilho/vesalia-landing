@@ -232,20 +232,18 @@ body > * {
   overflow: hidden;
 }
 
-/* Gravura de Vesalius — watermark à direita, abaixo da régua do section-meta */
+/* Frontispício da Fabrica como FUNDO da seção (pedido 04/09): o teatro
+   anatômico inteiro atrás do manifesto, quase sussurrado — multiply casa a
+   gravura com o papel creme; a opacidade baixa mantém o texto soberano. */
 .manifesto::before {
   content: "";
   position: absolute;
-  top: calc(var(--space-xxl) + var(--space-xl));
-  bottom: var(--space-xxl);
-  right: var(--space-md);
-  width: 42%;
-  max-width: 420px;
-  background-image: url("/assets/vesalius-fabrica.jpg");
+  inset: 0;
+  background-image: url("/assets/vesalius-frontispicio.jpg");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center right;
-  opacity: 0.3;
+  background-position: center;
+  opacity: 0.09;
   mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 0;
@@ -287,9 +285,9 @@ body > * {
 
 @media (max-width: 768px) {
   .manifesto::before {
-    width: 65%;
-    right: 0;
-    opacity: 0.14;
+    background-size: cover;
+    background-position: top center;
+    opacity: 0.07;
   }
 
   .prose {
@@ -1753,9 +1751,8 @@ body > * {
 }
 
 /* A gravura anatômica saiu do hero (pedido do Alfredo, 03/09) — a capa é da
-   marca. A marca d'água genérica do .manifesto continua desligada: o § 01
-   agora tem o RETRATO do Vesalius como figura de verdade (.portrait). */
-.manifesto::before { content: none; }
+   marca. A marca-d'água do § 01 VOLTOU em 04/09, agora com o frontispício da
+   Fabrica de fundo (regra lá em cima); o retrato segue como figura. */
 
 /* ---------- Respiro: 192px entre seções era vão, não pausa ---------- */
 .pillars,

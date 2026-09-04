@@ -1837,6 +1837,23 @@ body > * {
   align-items: start;
 }
 
+/* A coluna de imagens estica junto com o texto: retrato ancorado no alto,
+   frontispício fechando embaixo — nada de vazio no meio da seção. */
+.manifesto-figures {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+/* Abertura do manifesto com um degrau a mais de corpo — é a voz do fundador.
+   (em px, não em: o .prose p usa clamp e o em multiplicava a base errada.) */
+.manifesto .prose p:first-of-type {
+  font-size: clamp(26px, 2.9vw, 36px);
+  color: var(--ink);
+}
+
 .portrait {
   margin: 0;
 }
@@ -1864,6 +1881,9 @@ body > * {
 
 @media (max-width: 760px) {
   .manifesto-body { grid-template-columns: 1fr; }
+  /* No celular as duas pranchas ficam lado a lado, fechando a seção. */
+  .manifesto-figures { flex-direction: row; gap: var(--space-sm); }
+  .manifesto-figures .portrait { flex: 1; max-width: none; }
   .portrait { max-width: 260px; }
 }
 

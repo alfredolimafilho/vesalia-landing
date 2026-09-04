@@ -2078,6 +2078,20 @@ body > * {
   .coverage-compact .coverage-grid { grid-template-columns: 1fr; }
 }
 
+/* Nota de fecho da Curadoria (§ 05) */
+.curadoria-note {
+  margin-top: var(--space-md);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+.curadoria-note a {
+  color: var(--ink);
+}
+
 /* Subtítulo do convite final ("Vamos iniciar?") */
 .waitlist-title {
   font-family: var(--font-serif);

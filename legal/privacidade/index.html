@@ -41,7 +41,7 @@
 
   <main class="legal-main">
     <h1>Política de Privacidade</h1>
-    <p>Última atualização: 7 de agosto de 2026</p>
+    <p>Última atualização: 3 de outubro de 2026</p>
     <p>Esta Política de Privacidade descreve como o <strong>VESALIA Clinical Operations</strong> ("Plataforma", "nós" ou "nosso") coleta, utiliza, armazena, compartilha e protege dados pessoais, inclusive dados pessoais sensíveis de saúde, no contexto da operação do software de gestão clínica oferecido às clínicas contratantes e do Portal da Paciente disponibilizado aos titulares.</p>
     <p>A Plataforma é operada por <strong>VESALIA SYSTEMS LTDA</strong>, inscrita no CNPJ sob o nº <strong>67.250.864/0001-32</strong>, com sede em Rua Desembargador Lauro Nogueira, 1500, sala 310 — Fortaleza/CE — CEP 60.176-065.</p>
     <p>Esta Política observa a Lei nº 13.709/2018 ("LGPD"), as Resoluções do Conselho Federal de Medicina (em especial a Resolução CFM nº 1.821/2007 que disciplina a guarda de prontuários) e demais normas aplicáveis ao tratamento de dados de saúde no Brasil.</p>
@@ -61,7 +61,14 @@
     <ul><li>Endereço IP, user-agent, identificadores de dispositivo.</li><li>Cookies estritamente necessários para autenticação e sessão.</li><li>Hash (SHA-256) de tokens de magic link, 2FA e sessão — nunca o token em claro.</li><li>Logs de auditoria (criação, alteração, exclusão de registros e quem executou).</li></ul>
     <h3>3.5 Dados de comunicação</h3>
     <ul><li>E-mails transacionais (confirmações, links de acesso, notificações).</li><li>Mensagens trocadas via <strong>WhatsApp Cloud API e Instagram Graph API</strong> (quando a clínica habilita os canais oficiais Meta), incluindo conteúdo de mensagens, identificadores de remetente (telefone, IGSID), mídia anexada (áudio, imagem, vídeo, documento) e metadados de entrega, nos limites do consentimento concedido pelo titular.</li><li>Transcrição automática de mensagens de áudio recebidas, gerada por serviços de inteligência artificial contratados como operadores, conforme detalhado na seção 6 desta Política.</li></ul>
-    <h2>4. Bases legais</h2>
+    
+    <h3>3.6 Dados de desempenho de redes sociais (Raio-X da clínica)</h3>
+    <p>Quando o próprio médico conecta a conta profissional de Instagram dele à ferramenta de diagnóstico da Vesalia (“Raio-X da clínica”), tratamos, <strong>somente em leitura</strong>: dados públicos do perfil (nome de usuário, biografia, número de seguidores e de publicações); métricas de desempenho da conta e de cada publicação (alcance, visualizações, interações, salvamentos e compartilhamentos); dados demográficos agregados dos seguidores (cidade, faixa etária e gênero, sempre em números agregados, nunca identificando seguidores individualmente); e o texto e as imagens das publicações já tornadas públicas pelo próprio médico.</p>
+    <p><strong>Finalidade:</strong> gerar um relatório de diagnóstico para o próprio médico, com a leitura do desempenho do perfil e pontos de atenção na comunicação à luz das normas de publicidade médica.</p>
+    <p><strong>O token de acesso não é armazenado.</strong> Ele é utilizado durante a geração do relatório e descartado em seguida; não é gravado em banco de dados nem transmitido ao navegador. A Vesalia não publica conteúdo, não lê mensagens diretas e não tem acesso às conversas da conta conectada.</p>
+    <p><strong>Exclusão:</strong> o médico pode remover o acesso a qualquer momento nas configurações do Instagram. Ao fazê-lo, o relatório gerado a partir da conta é apagado dos nossos servidores. Pedidos de exclusão enviados pela Meta são atendidos automaticamente em <code>app.vesalia.com.br/api/public/congresso/instagram/exclusao</code>.</p>
+
+<h2>4. Bases legais</h2>
     <p>O tratamento se dá com fundamento em uma ou mais das seguintes bases legais previstas na LGPD:</p>
     <ul><li><strong>Execução de contrato</strong> (art. 7º, V) — para operar a Plataforma contratada pela clínica.</li><li><strong>Cumprimento de obrigação legal ou regulatória</strong> (art. 7º, II) — em especial guarda de prontuário e obrigações fiscais.</li><li><strong>Tutela da saúde</strong> (art. 11, II, "f") — para o tratamento de dados sensíveis de saúde por profissionais habilitados.</li><li><strong>Legítimo interesse</strong> (art. 7º, IX) — para prevenção de fraude, segurança da informação e melhoria contínua do serviço, sempre observado o teste de proporcionalidade.</li><li><strong>Consentimento</strong> (art. 7º, I e art. 11, I) — quando o tratamento não puder se amparar em outra base, em especial para fins de marketing ativo, uso de fotografias clínicas e comunicação por canais opcionais.</li></ul>
     <h2>5. Finalidades</h2>

@@ -11,7 +11,27 @@
    tudo; esta página só mostra. */
 
 const API = "https://app.vesalia.com.br";
+// 🚨 VALOR DE RESERVA, NÃO A VERDADE. A verdade vem de
+// GET /api/public/signup/condicoes — esta cópia existe só pra tela de cadastro
+// nunca aparecer sem preço se a API demorar. Enquanto era só a mensalidade, a
+// cópia envelhecia calada; quando a ADESÃO entrou (06/10/2026), ela passaria a
+// prometer "hoje, R$ 890 — a 1ª mensalidade" onde o servidor cobra R$ 200.
 const PRECO = { mensal: 890, anual: 801 };
+let ADESAO = 200;
+let DIAS_TESTE = 30;
+
+async function carregarCondicoes() {
+  try {
+    const r = await fetch(API + "/api/public/signup/condicoes");
+    if (!r.ok) return;
+    const d = await r.json();
+    if (typeof d.mensal === "number") PRECO.mensal = d.mensal;
+    if (typeof d.anual === "number") PRECO.anual = d.anual;
+    if (typeof d.adesao === "number") ADESAO = d.adesao;
+    if (typeof d.diasDeTeste === "number") DIAS_TESTE = d.diasDeTeste;
+    atualizarPreco();
+  } catch { /* fica o valor de reserva */ }
+}
 
 const $ = (id) => document.getElementById(id);
 const fmt = (v) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -157,14 +177,25 @@ function atualizarPreco() {
   const final = cupomAplicado ? cupomAplicado.valorMensal : cheio;
   const sufixo = p === "anual" ? " × 12 meses" : "/mês";
   const riscado = cupomAplicado ? `<span class="price-old">${fmt(cheio)}</span>` : "";
+  // O que se paga HOJE é a adesão. O cupom pode trazer a dele (Primeiro
+  // Consultório, R$ 100); sem cupom, a do plano.
+  const hoje = cupomAplicado && typeof cupomAplicado.valorEntrada === "number"
+    ? cupomAplicado.valorEntrada
+    : ADESAO;
+  const dias = cupomAplicado && typeof cupomAplicado.diasDeTeste === "number"
+    ? cupomAplicado.diasDeTeste
+    : DIAS_TESTE;
   $("resumoPreco").innerHTML =
-    `Hoje: ${riscado}<strong>${fmt(final)}</strong> — a 1ª mensalidade, no cartão ou no PIX. Depois, ${fmt(final)}${sufixo}.`;
+    `Hoje: <strong>${fmt(hoje)}</strong> — a adesão, no cartão ou no PIX. ` +
+    `Depois de ${dias} dias, ${riscado}<strong>${fmt(final)}</strong>${sufixo}.`;
   const pix = viaPix();
   $("resumoFinal").innerHTML =
-    `Cobrança de hoje${pix ? " (PIX)" : ""}: <strong>${fmt(final)}</strong> (1ª mensalidade do plano ${p}${cupomAplicado ? `, cupom ${cupomAplicado.codigo}` : ""}). ` +
+    `Cobrança de hoje${pix ? " (PIX)" : ""}: <strong>${fmt(hoje)}</strong> ` +
+    `(adesão do plano ${p}${cupomAplicado ? `, cupom ${cupomAplicado.codigo}` : ""}). ` +
+    `A adesão é cobrada uma vez e não é abatida da mensalidade. ` +
     (pix
-      ? `Recorrência: ${fmt(final)}/mês — todo mês chega a cobrança PIX no seu e-mail.`
-      : `Recorrência: ${fmt(final)}/mês.`);
+      ? `A mensalidade de ${fmt(final)} começa em ${dias} dias — todo mês chega a cobrança PIX no seu e-mail.`
+      : `A mensalidade de ${fmt(final)} começa em ${dias} dias.`);
 }
 
 document.querySelectorAll('#planPick input').forEach((r) =>
@@ -184,7 +215,12 @@ async function aplicarCupom(silencioso) {
     codigo, periodicidade: periodicidade(),
   });
   if (ok && data.valido) {
-    cupomAplicado = { codigo: data.codigo, valorMensal: data.valorMensal };
+    cupomAplicado = {
+      codigo: data.codigo,
+      valorMensal: data.valorMensal,
+      valorEntrada: data.valorEntrada,
+      diasDeTeste: data.diasDeTeste,
+    };
     hint.className = "field-hint ok";
     hint.textContent = `Cupom ${data.codigo} aplicado: ${fmt(data.valorMensal)}/mês${data.descricao ? ` — ${data.descricao}` : ""}.`;
   } else {
@@ -250,7 +286,7 @@ function mostrarPix(d) {
   } else {
     $("pixQr").style.display = "none";
   }
-  $("pixValor").innerHTML = `Valor: <strong>${fmt(d.valor)}</strong> — 1ª mensalidade.`;
+  $("pixValor").innerHTML = `Valor: <strong>${fmt(d.valor)}</strong> — a adesão.`;
   $("pixCola").value = d.pixCopiaECola;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -398,3 +434,6 @@ $("form3").addEventListener("submit", async (e) => {
 });
 
 aplicarMetodo();
+// Busca o preço e a adesão de verdade. Se não responder, a tela já está
+// renderizada com o valor de reserva — cadastro sem preço é pior.
+carregarCondicoes();

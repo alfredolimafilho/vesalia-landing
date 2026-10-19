@@ -6,6 +6,11 @@
       "type": 302
     },
     {
+      "source": "/raiox",
+      "destination": "https://app.vesalia.com.br/raiox",
+      "type": 302
+    },
+    {
       "source": "/legal/exclusao",
       "destination": "/legal/exclusao-dados",
       "type": 301
